@@ -994,6 +994,7 @@ function checkbox(boolean = false) constructor {
 }
 
 function touch_control() constructor {
+	device_mouse_dbclick_enable(false); // ignore second tap as right button
 	enabled = false;
 	device = undefined;
 	x = 0;
