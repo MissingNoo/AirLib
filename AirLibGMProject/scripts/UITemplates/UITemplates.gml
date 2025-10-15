@@ -1,7 +1,7 @@
 function __AirLibLoadTemplates() {
 	AirLib.templates = {
 		grid_template: {
-			"template":"grid",
+			"template": "grid",
 			"width": 1280.0,
 			"name": "main_panel",
 			"height": 720.0,

@@ -1,8 +1,7 @@
 //feather disable all
 try {
 	GameData ??= {};
-}
-catch (error) {
+} catch (error) {
 	GameData = {};
 }
 
@@ -121,14 +120,7 @@ function area_add_width_height(area) {
 
 function mouse_in_area(area) {
 	area = area_add_width_height(area);
-	return point_in_rectangle(
-		mouse_x,
-		mouse_y,
-		area[0],
-		area[1],
-		area[2],
-		area[3]
-	);
+	return point_in_rectangle(mouse_x, mouse_y, area[0], area[1], area[2], area[3]);
 }
 
 function mouse_in_area_gui(area) {
@@ -678,7 +670,7 @@ function gui_cant_interact_frames(frames = 10) {
 }
 
 function gui_can_interact() {
-	var can = !global.listboxopen && AirLib.listframe < AirLib.frame;// && AirLib.waitframe < AirLib.frame;
+	var can = !global.listboxopen && AirLib.listframe < AirLib.frame; // && AirLib.waitframe < AirLib.frame;
 	//gui_cant_interact_frames(10);
 	return can;
 }
@@ -794,6 +786,7 @@ function topdown_movement(owner, _spd) constructor {
 		return self;
 	};
 }
+
 /**
  * Used to animate sprites for manual drawing on objects
  * @param {any} spr Sprite to animate
@@ -959,34 +952,37 @@ function ui_element_list() constructor {
 
 function checkbox(boolean = false) constructor {
 	checked = boolean;
-	type = "checkbox"
-	on_change = function(){};
-	area = [0,0,0,0];
+	type = "checkbox";
+	on_change = function() {};
+	area = [0, 0, 0, 0];
 	on_area = false;
 	custom_draw = false;
-	pos = {left:0,top:0,width:0,height:0};
-	static set_on_change = function (f) {
+	pos = {left: 0, top: 0, width: 0, height: 0};
+
+	static set_on_change = function(f) {
 		on_change = f;
 		return self;
-	}
-	static tick = function () {
+	};
+
+	static tick = function() {
 		if (gui_click(area[0], area[1], area[2], area[3])) {
 			checked = !checked;
 			on_change(checked);
 		}
 		return self;
-	}
-	static draw = function () {
+	};
+
+	static draw = function() {
 		tick();
 		if (custom_draw == false) {
 			draw_bg_fg(pos, self);
 		} else {
 			custom_draw(pos);
 		}
-			return self;
-			
-	}
-		static position = function(x, y, xx, yy) {
+		return self;
+	};
+
+	static position = function(x, y, xx, yy) {
 		var newarea = [x, y, xx, yy];
 		if (array_equals(area, newarea)) {
 			return self;
@@ -995,4 +991,58 @@ function checkbox(boolean = false) constructor {
 		pos = {left: x, top: y, width: xx - x, height: yy - y};
 		return self;
 	};
+}
+
+function touch_control() constructor {
+	enabled = false;
+	device = undefined;
+	x = 0;
+	y = 0;
+	startx = undefined;
+	starty = undefined;
+
+	static get_direction = function() {
+		return point_direction(startx, starty, x, y);
+	};
+
+	static reset = function() {
+		x = 0;
+		y = 0;
+		startx = undefined;
+		starty = undefined;
+		device = undefined;
+		enabled = false;
+	};
+
+	#region Touch left right screen example
+	//GameData.touch = {left: new touch_control(), right: new touch_control()};
+	//for (var i = 0; i <= 1; i++) {
+	//var xm = device_mouse_x_to_gui(i);
+	//var ym = device_mouse_y_to_gui(i);
+	//var side = undefined;
+	//if (xm > gui_x_percent(50)) {
+	//side = "right";
+	//} else {
+	//side = "left";
+	//}
+	//var touch = GameData.touch[$ side];
+	//if (device_mouse_check_button(i, mb_left)) {
+	//if (touch.device == undefined) {
+	//touch.device = i;
+	//touch.enabled = true;
+	//}
+	//if (touch.device == i) {
+	//touch.startx ??= xm;
+	//touch.starty ??= ym;
+	//touch.x = xm;
+	//touch.y = ym;
+	//}
+	//}
+	//if (device_mouse_check_button_released(i, mb_left)) {
+	//if (touch.device == i) {
+	//touch.reset();
+	//}
+	//}
+	//}
+	#endregion
 }

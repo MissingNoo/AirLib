@@ -9,7 +9,7 @@ if (async_load[? "type"] == network_type_data) {
 			AirNet.connection.set_uuid(data.uuid);
 			AirNet.username = undefined;
 			AirNet.loggedin = false;
-			if (AirNetUseColisionServer and data.rmanager) {
+			if (AirNetUseColisionServer && data.rmanager) {
 				room_goto(rColTest);
 			}
 			break;
@@ -58,7 +58,10 @@ if (async_load[? "type"] == network_type_data) {
 				AirNet.players_in_room[player].x = data.x;
 				AirNet.players_in_room[player].y = data.y;
 			} else {
-				array_push(AirNet.players_in_room, {uuid:data.uuid, x : data.x, y:data.y});
+				array_push(
+					AirNet.players_in_room,
+					{uuid: data.uuid, x: data.x, y: data.y}
+				);
 			}
 			break;
 

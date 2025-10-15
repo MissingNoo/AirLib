@@ -22,9 +22,9 @@
 //
 // If true: when Loading a layer, its contents will be merged into an existing layer with the same name.
 // If no matching layer exists, a new one will be created.
-// 
+//
 // If false: a new layer is always created, even if a layer with the same name already exists.
-// 
+//
 // WARNING: Enabling this may cause shared layers from multiple rooms to be unintentionally destroyed during
 // payload.Cleanup().
 #macro ROOMLOADER_MERGE_LAYERS false
@@ -38,7 +38,7 @@
 
 // If true, RoomLoader.Load() returns a RoomLoaderPayload instance containing the IDs of all loaded layers and their elements.
 // If false, no IDs are collected or returned, improving Loading performance.
-// 
+//
 // NOTE: Set this to false if you don't need to manually clean up loaded contents.
 // e.g. When room switching automatically destroys all instances, layers and assets.
 #macro ROOMLOADER_DELIVER_PAYLOAD true
@@ -47,12 +47,12 @@
 #region Instances
 
 // Whether to initialize room parameters for loaded instances (true) or not (false).
-// 
+//
 // NOTE: Setting this to false improves Loading performance.
 #macro ROOMLOADER_INSTANCES_USE_ROOM_PARAMS true
 
 // Whether to run Creation Code for loaded instances (true) or not (false).
-// 
+//
 // NOTE: Setting this to false improves Loading performance.
 #macro ROOMLOADER_INSTANCES_RUN_CREATION_CODE true
 

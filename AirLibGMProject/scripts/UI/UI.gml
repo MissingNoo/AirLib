@@ -426,9 +426,7 @@ global.game_uis.create = {
 								{
 									"padding": 10.0,
 									"width": 90.0,
-									"data": {
-										"text":"[c_black][fa_middle]Create game"
-									},
+									"data": {"text": "[c_black][fa_middle]Create game"},
 									"height": 30.0,
 									"name": "create_label",
 								},
@@ -444,7 +442,9 @@ global.game_uis.create = {
 												{
 													"padding": 0.0,
 													"width": 140.0,
-													"data": {"text" : "[c_black][fa_middle]Join game"},
+													"data": {
+														"text": "[c_black][fa_middle]Join game",
+													},
 													"name": "display_label",
 												},
 												{
@@ -474,7 +474,9 @@ global.game_uis.create = {
 												{
 													"padding": 10.0,
 													"width": 60.0,
-													"data": {"text": "[c_black][fa_middle]Type:"},
+													"data": {
+														"text": "[c_black][fa_middle]Type:",
+													},
 													"name": "type_label",
 												},
 												{
@@ -503,8 +505,9 @@ global.game_uis.create = {
 												{
 													"padding": 10.0,
 													"width": 60.0,
-																										"data": {"text":"[c_black][fa_middle]Max Players:"},
-
+													"data": {
+														"text": "[c_black][fa_middle]Max Players:",
+													},
 													"name": "panel_80175",
 												},
 												{
@@ -532,7 +535,9 @@ global.game_uis.create = {
 												{
 													"padding": 10.0,
 													"width": 60.0,
-													"data": {"text":"[c_black][fa_middle]Request to join:"},
+													"data": {
+														"text": "[c_black][fa_middle]Request to join:",
+													},
 													"name": "panel_87494",
 												},
 												{
