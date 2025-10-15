@@ -109,7 +109,30 @@ function worldxy_to_guixy(_x, _y) {
 	return [gui_x, gui_y];
 }
 
+function area_add_width_height(area) {
+	if (area[2] < area[0]) {
+		area[2] = area[0] + area[2];
+	}
+	if (area[3] < area[1]) {
+		area[3] = area[1] + area[3];
+	}
+	return area;
+}
+
+function mouse_in_area(area) {
+	area = area_add_width_height(area);
+	return point_in_rectangle(
+		mouse_x,
+		mouse_y,
+		area[0],
+		area[1],
+		area[2],
+		area[3]
+	);
+}
+
 function mouse_in_area_gui(area) {
+	area = area_add_width_height(area);
 	return point_in_rectangle(
 		device_mouse_x_to_gui(0),
 		device_mouse_y_to_gui(0),
@@ -771,12 +794,25 @@ function topdown_movement(owner, _spd) constructor {
 		return self;
 	};
 }
-
+/**
+ * Used to animate sprites for manual drawing on objects
+ * @param {any} spr Sprite to animate
+ */
 function animated_sprite(spr) constructor {
 	f = 0;
 	sprite = spr;
 	speed = sprite_get_speed(sprite);
 	last_f = sprite_get_number(sprite);
+	width = sprite_get_width(sprite);
+	height = sprite_get_height(sprite);
+
+	static set_sprite = function(spr) {
+		sprite = spr;
+		speed = sprite_get_speed(sprite);
+		last_f = sprite_get_number(sprite);
+		width = sprite_get_width(sprite);
+		height = sprite_get_height(sprite);
+	};
 
 	static animate = function() {
 		f += speed / game_get_speed(gamespeed_fps);

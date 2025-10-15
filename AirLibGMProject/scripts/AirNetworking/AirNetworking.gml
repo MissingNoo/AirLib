@@ -1,3 +1,5 @@
+#macro AirNetUseColisionServer true
+
 #macro AirNet global.__airnet
 AirNet = {
 	ip: "127.0.0.1",

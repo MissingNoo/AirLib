@@ -33,7 +33,7 @@ redis.set("PlayerList", listPlayers().toString());
 const PORT = 36692;
 server.bind(PORT);
 import { addScore } from "./scores.ts";
-
+let rmanagerdata = undefined;
 // deno-lint-ignore no-explicit-any
 server.on("message", (msg: any, rinfo: any) => {
   disconnectAfk();
@@ -70,9 +70,15 @@ server.on("message", (msg: any, rinfo: any) => {
       loggedIn: false,
       lastping: moment(moment.now()),
     };
+    console.log(players.length);
+    let isRmanager = players.length == 0;
     players.push(p);
     redis.set("PlayerList", listPlayers().toString());
-    sendMessage("uuid", { uuid: gen_uuid }, rinfo.address, rinfo.port);
+    sendMessage("uuid", { uuid: gen_uuid, rmanager : isRmanager }, rinfo.address, rinfo.port);
+    if (isRmanager) {
+      console.log("[MAIN] Colision manager started");
+      rmanagerdata = rinfo;
+    }
     console.log(`[Main] Player ${gen_uuid} connected`);
   }
   // If the player is already connected, handle the message
@@ -144,6 +150,12 @@ server.on("message", (msg: any, rinfo: any) => {
           { uuid: player.uuid, x: player.x, y: player.y },
           player,
         );
+        sendMessage(
+          "playerMoved",
+          { uuid: player.uuid, x: player.x, y: player.y },
+          rmanagerdata.address,
+          rmanagerdata.port,
+        )
         break;
       }
 
