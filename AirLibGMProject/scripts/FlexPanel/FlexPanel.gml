@@ -121,14 +121,14 @@ function window(struct, _generate = false) constructor {
 	draw_list = [];
 	draw_func = {};
 	recalculate();
-	var js = json_stringify(struct);
-	if (
-		!string_contains(js, "template")
-		&& string_contains(js, "grid")
-		&& room != rUIEditor
-	) {
-		fit_to_gui();
-	}
+	//var js = json_parse(struct);
+	//if (
+		//!string_contains(js, "template")
+		//&& string_contains(js, "grid")
+		//&& room != rUIEditor
+	//) {
+		//fit_to_gui();
+	//}
 
 	static set_visible = function(boolean) {
 		visible = boolean;
