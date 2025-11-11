@@ -283,7 +283,7 @@ if (editable) {
 		_color = "[c_red]";
 		draw_set_color(c_red);
 	}
-	if (!string_contains(name, "grid") || keyboard_check(ord("Z"))) {
+	if ((!string_contains(name, "grid") && !string_contains(name, "middle_panel") && !string_contains(name, "top_panel") && !string_contains(name, "bottom_panel")) || keyboard_check(ord("Z"))) {
 		draw_rectangle(x, y, x + width, y + height, true);
 		if (
 			type == "panel"

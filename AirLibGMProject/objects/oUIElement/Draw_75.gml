@@ -46,6 +46,44 @@ if (oUI.editing != undefined && name == oUI.editing) {
 		}
 		oEditableUI.ui.recalculate();
 	}
+	if (
+		keyboard_check(vk_control) 
+		&& keyboard_check_released(ord("X")) 
+		&& parent != undefined
+		&& ele != undefined
+		&& mouse_in_area_gui([x, y, x + width, y + height])
+		&& deltimer == 0
+	) {
+		deltimer = 60;
+		oEditableUI.copy = flexpanel_node_get_struct(ele);
+		flexpanel_node_remove_child(parent, ele);
+		ele = undefined;
+		with (oUIElement) {
+			if (data.owner == oEditableUI.ui) {
+				instance_destroy();
+			}
+		}
+		oEditableUI.ui.recalculate();
+	}
+	if (
+		keyboard_check(vk_control) 
+		&& keyboard_check_released(ord("V")) 
+		&& ele != undefined
+		&& mouse_in_area_gui([x, y, x + width, y + height])
+		&& deltimer == 0
+	) {
+		deltimer = 60;
+		var ele = flexpanel_node_get_child(oEditableUI.ui.root, oUI.editing);
+		var paste_node = flexpanel_create_node(oEditableUI.copy);
+		flexpanel_node_insert_child(ele, paste_node, flexpanel_node_get_num_children(ele));
+		ele = undefined;
+		with (oUIElement) {
+			if (data.owner == oEditableUI.ui) {
+				instance_destroy();
+			}
+		}
+		oEditableUI.ui.recalculate();
+	}
 	var move_offset =
 		-keyboard_check_released(vk_pageup)
 		- oUI.up

@@ -1,8 +1,10 @@
 //feather ignore all
 #macro AirUIDefaultSpr var spr = (data[$ "image"] != undefined and data[$ "image"] != "") ? asset_get_index(data.image) : undefined; spr = (spr != undefined and spr != -1) ? spr : sBlank
+#macro AirUIDrawDefaultSpr AirUIDefaultSpr draw_sprite_stretched(spr, 0, _x, _y, _w, _h);
 #macro AirUIArea var _x = pos.left, _y = pos.top, _w = pos.width, _h = pos.height, area = [_x, _y, _x + _w, _y + _h]
 #macro AirUIFunctionStart method(self, function(name, pos, data) { var _x = pos.left, _y = pos.top, _w = pos.width, _h = pos.height, area = [_x, _y, _x + _w, _y + _h] if (!is_undefined(data[$ "tags"])) { flexpanel_draw_tags(name, pos, data) }
 #macro AirUIFunctionEnd })
+#macro AirUIDefaultDraw AirUIFunctionStart AirUIDrawDefaultSpr AirUIFunctionEnd
 global.edit_mode = false;
 global.edit_node = undefined;
 global.edit_node_owner = undefined;
@@ -19,7 +21,6 @@ function flexpanel_draw_tags(name, pos, data) {
 		var text = data.text;
 		scribble(text).draw(pos.left, pos.top + pos.height / 2);
 	}
-	
 }
 
 function draw_bg_fg(pos = {}, element = {type: undefined, tags: []}) {
@@ -36,14 +37,14 @@ function draw_bg_fg(pos = {}, element = {type: undefined, tags: []}) {
 			color = AirLibInputBG;
 			break;
 		case "checkbox":
-						spr = AirLibDefaultCheckboxSprite;
-		check = "checked";
+			spr = AirLibDefaultCheckboxSprite;
+			check = "checked";
 			if (!element.checked) {
 				color = AirLibCheckboxBG;
 			} else {
 				color = AirLibCheckboxBGC;
 			}
-			
+
 			break;
 		case "listbox":
 			spr = AirLibDefaultListSprite;
@@ -121,7 +122,11 @@ function window(struct, _generate = false) constructor {
 	draw_func = {};
 	recalculate();
 	var js = json_stringify(struct);
-	if (!string_contains(js, "template") and string_contains(js, "grid") and room != rUIEditor) {
+	if (
+		!string_contains(js, "template")
+		&& string_contains(js, "grid")
+		&& room != rUIEditor
+	) {
 		fit_to_gui();
 	}
 
@@ -138,11 +143,11 @@ function window(struct, _generate = false) constructor {
 		var pos = flexpanel_node_layout_get_position(node, false);
 		var _name = flexpanel_node_get_name(node);
 		var _data = flexpanel_node_get_data(node);
-		if (!is_undefined(draw_func[$ _name]) and is_undefined(_data[$ "added"])) {
+		if (!is_undefined(draw_func[$ _name]) && is_undefined(_data[$ "added"])) {
 			_data[$ "added"] = true;
 			array_push(draw_list, [_name, pos, _data, draw_func[$ _name]]);
 		}
-		
+
 		#region tags
 		if (!is_undefined(_data[$ "tags"])) {
 			if (is_undefined(_data[$ "added"])) {
@@ -169,17 +174,17 @@ function window(struct, _generate = false) constructor {
 			foreach(_function, _child);
 		}
 	};
-	
-	static add_draw = function (name, func) {
+
+	static add_draw = function(name, func) {
 		draw_func[$ name] = func;
 		return self;
-	}
-	
+	};
+
 	static finish = function() {
 		draw_list = [];
-		foreach(function(){}, undefined);
-	}
-	
+		foreach(function() {}, undefined);
+	};
+
 	static draw = function() {
 		for (var i = 0; i < array_length(draw_list); i++) {
 			var name = draw_list[i][0];
@@ -187,7 +192,7 @@ function window(struct, _generate = false) constructor {
 			var data = draw_list[i][2];
 			draw_list[i][3](name, pos, data);
 		}
-	}
+	};
 
 	static set_node_function = function(node, _function) {
 		set_data(node, {f: _function});
@@ -244,15 +249,15 @@ function window(struct, _generate = false) constructor {
 
 	static node_visible = function(n, b = undefined) {
 		var nn = flexpanel_node_get_child(root, n);
-        if (is_undefined(b)) {
-        	flexpanel_node_style_set_display(nn, !flexpanel_node_style_get_display(nn));
-        } else {
-        	flexpanel_node_style_set_display(nn, !b);
-        }
-		
+		if (is_undefined(b)) {
+			flexpanel_node_style_set_display(nn, !flexpanel_node_style_get_display(nn));
+		} else {
+			flexpanel_node_style_set_display(nn, !b);
+		}
+
 		recalculate();
 	};
-	
+
 	static node_is_visible = function(n) {
 		var nn = flexpanel_node_get_child(root, n);
 		return !flexpanel_node_style_get_display(nn);
@@ -427,7 +432,7 @@ function get_align(str) {
 			align = flexpanel_position_type.absolute;
 			break;
 		case "static":
-			align = flexpanel_position_type.static;
+			//align = flexpanel_position_type.static;
 			break;
 		default:
 			align = -1;
@@ -861,4 +866,70 @@ for (var i = 0; i < array_length(global.options); ++i) {
 	);
 }
 
-//global.inspector = flexpanel_node_get_struct(global.inspector); 
+//global.inspector = flexpanel_node_get_struct(global.inspector);
+function cache_container() constructor {
+	data = {};
+
+	static cache = function(name, _data) {
+		struct_set(data, name, _data);
+		return self;
+	};
+
+	static get = function(name) {
+		return struct_get(data, name);
+	};
+
+	static is_cached = function(name) {
+		return struct_exists(data, name);
+	};
+
+	static flush = function() {
+		data = {};
+	};
+}
+
+global.flexcache = new cache_container();
+
+function airui_fit_height(spr, pos) {
+	var scale = 1;
+	var aa = pos.top + pos.height / 2;
+	var bb = pos.left + pos.width / 2;
+	do {
+		scale += 0.01;
+	} until (aa - (sprite_get_height_ext(spr, scale) / 2) <= pos.top)
+	scale -= 0.1;
+	do {
+		scale -= 0.01;
+	} until (bb - (sprite_get_width_ext(spr, scale) / 2) >= pos.left)
+	scale += 0.1;
+	return scale;
+}
+
+enum airui_fit {
+	width,
+	height,
+	stretch,
+}
+
+function airui_draw_sprite_centered(name, spr, pos, fit, scalediv = 1, alpha = 1) {
+	switch (fit) {
+		default:
+		case airui_fit.height:
+			if (!global.flexcache.is_cached(name)) {
+				global.flexcache.cache(name, airui_fit_height(spr, pos));
+			}
+			var scale = global.flexcache.get(name);
+			draw_sprite_ext(
+				spr,
+				0,
+				(pos.left + pos.width / 2),
+				(pos.top + pos.height / 2),
+				scale * scalediv,
+				scale * scalediv,
+				0,
+				c_white,
+				alpha
+			);
+			break;
+	}
+}

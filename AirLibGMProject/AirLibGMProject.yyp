@@ -13,13 +13,13 @@
     {"$GMFolder":"","%Name":"AirLib","folderPath":"folders/AirLib.yy","name":"AirLib","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"UIEditor","folderPath":"folders/AirLib/UIEditor.yy","name":"UIEditor","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"AirNetworking","folderPath":"folders/AirNetworking.yy","name":"AirNetworking","resourceType":"GMFolder","resourceVersion":"2.0",},
+    {"$GMFolder":"","%Name":"Libs","folderPath":"folders/Libs.yy","name":"Libs","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"GMRoomLoader","folderPath":"folders/Libs/GMRoomLoader.yy","name":"GMRoomLoader","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"01. Public","folderPath":"folders/Libs/GMRoomLoader/01. Public.yy","name":"01. Public","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"02. Private","folderPath":"folders/Libs/GMRoomLoader/02. Private.yy","name":"02. Private","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"01. General","folderPath":"folders/Libs/GMRoomLoader/02. Private/01. General.yy","name":"01. General","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"02. Data","folderPath":"folders/Libs/GMRoomLoader/02. Private/02. Data.yy","name":"02. Data","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"03. Notes","folderPath":"folders/Libs/GMRoomLoader/03. Notes.yy","name":"03. Notes","resourceType":"GMFolder","resourceVersion":"2.0",},
-    {"$GMFolder":"","%Name":"Libs","folderPath":"folders/Libs.yy","name":"Libs","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Scribble","folderPath":"folders/Libs/Scribble.yy","name":"Scribble","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"(System - don't call these functions)","folderPath":"folders/Libs/Scribble/(System - don't call these functions).yy","name":"(System - don't call these functions)","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Classes","folderPath":"folders/Libs/Scribble/(System - don't call these functions)/Classes.yy","name":"Classes","resourceType":"GMFolder","resourceVersion":"2.0",},
@@ -47,7 +47,7 @@
   "isEcma":false,
   "LibraryEmitters":[],
   "MetaData":{
-    "IDEVersion":"2024.1400.0.907",
+    "IDEVersion":"2024.1400.1.921",
   },
   "name":"AirLibGMProject",
   "resources":[
