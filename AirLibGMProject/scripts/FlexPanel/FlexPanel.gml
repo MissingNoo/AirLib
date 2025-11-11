@@ -933,3 +933,24 @@ function airui_draw_sprite_centered(name, spr, pos, fit, scalediv = 1, alpha = 1
 			break;
 	}
 }
+
+function airui_hotreload(uifile = "/tmp/export.ui", user_event = 0) {
+	self[$"md5_frame"] ??= "";
+	if (md5_frame < AirLib.frame) {
+		current_md5 = md5_file(uifile);
+		if (current_md5 != last_md5) {
+			show_debug_message("reloading ui");
+			var f = json_parse(
+					buffer_read(
+						buffer_load(uifile),
+						buffer_text
+					)
+				);
+			ui = new window(f, false);
+			ui.fit_to_gui();
+			global.flexcache.flush();
+			event_user(user_event);
+		}
+		last_md5 = md5_file(uifile);
+	}
+}

@@ -1,4 +1,5 @@
 ui = new window(global.game_uis.login);
+ui.fit_to_gui();
 username = new textbox();
 username.set_align(fa_center, fa_middle);
 username.backtext = "username";
