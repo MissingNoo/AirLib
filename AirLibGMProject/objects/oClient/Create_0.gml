@@ -5,7 +5,7 @@ tween(self, "offset", -10);
 infosurf = undefined;
 count = 0;
 lastroom = "test";
-AirNet[$ "connection"] ??= new connection(AirNet.ip, AirNet.port, network_socket_udp);
+AirNet[$ "connection"] ??= new connection(AirNet.ip, AirNet.port, network_socket_tcp);
 AirNet.connection.connect();
 AirNet.host = false;
 AirNet.players_in_room = [];

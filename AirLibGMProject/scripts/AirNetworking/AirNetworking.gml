@@ -84,10 +84,8 @@ function packet(type) constructor {
 			exit;
 		}
 		buffer_write(buffer, buffer_string, json_stringify(data));
-		network_send_udp_raw(
+		network_send_raw(
 			AirNet.connection.socket,
-			AirNet.ip,
-			AirNet.port,
 			buffer,
 			buffer_tell(buffer) - 1
 		);

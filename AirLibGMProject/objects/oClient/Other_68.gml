@@ -1,9 +1,21 @@
 if (async_load[? "type"] == network_type_data) {
 	var buffer = buffer_read(async_load[? "buffer"], buffer_string);
-	var json = json_parse(buffer);
+	
+	var arr = string_split(buffer, ";");
+	for (var i = 0; i < array_length(arr) - 1; i++) {
+	//show_message(arr[i]);
+	var json = json_parse(arr[i]);
 	var return_type = json.type;
-	var data = json_parse(json.message);
+		try {
+			var data = json_parse(json.message);
+		}
+		catch (error) {
+			exit;
+		}
+	
 	var oouid, player;
+				
+
 	switch (return_type) {
 		case "uuid":
 			AirNet.connection.set_uuid(data.uuid);
@@ -20,6 +32,7 @@ if (async_load[? "type"] == network_type_data) {
 				((time - AirNet.connection.pingtime) / 1000000) * 100
 			);
 			AirNet.connection.lastpong = get_timer();
+			show_debug_message("pong");
 			break;
 
 		case "joinedRoom":
@@ -120,4 +133,5 @@ if (async_load[? "type"] == network_type_data) {
 			// code here
 			break;
 	}
+}
 }
