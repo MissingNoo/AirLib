@@ -5,6 +5,29 @@ try {
 	GameData = {};
 }
 
+#region disable if input installed
+function input_check_pressed(k) {
+	var _k = k;
+	var f = false;
+	if (!is_numeric(k)) {
+		switch (k) {
+			case "accept":
+				k = "Z";
+				break;
+			case "cancel":
+				k = "X";
+				break;
+		}
+		_k = ord(string_upper(k));
+	}
+	if (f || keyboard_check_pressed(_k)) {
+		return true;
+	}
+	return false;
+}
+#endregion
+
+
 #region GUI Functions
 
 function gui_x_percent(percent) {
@@ -160,7 +183,7 @@ function draw_surface_part_area(surf, area) {
 global.listboxopen = false;
 global.elementselected = noone;
 global.listboxtimer = 60;
-
+global.currentelement = noone;
 function textbox() constructor {
 	type = "textbox";
 	only_numbers = false;
@@ -372,12 +395,12 @@ function button(_text) constructor {
 	use_text = true;
 	owner = noone;
 	text = _text;
+	unselect_on_leave = true;
 	original_area = [0, 0, 0, 0];
 	area = [0, 0, 0, 0];
 	selected_area = [0, 0, 0, 0];
 	pos = {left: 0, top: 0, width: 0, height: 0};
 	on_area = false;
-	keyboard_selected = false;
 	enabled = true;
 	gui = true;
 	sprite_back = AirLibDefaultButtonSprite;
@@ -452,8 +475,8 @@ function button(_text) constructor {
 	static on_click = function() {
 		if (
 			enabled
-			&& (gui ? mouse_in_area_gui(area) : mouse_in_area(area))
-			&& device_mouse_check_button_released(0, mb_left)
+			&& ((gui ? mouse_in_area_gui(area) : mouse_in_area(area)) or on_area)
+			&& (device_mouse_check_button_released(0, mb_left) or input_check_pressed("accept"))
 			&& gui_can_interact()
 		) {
 			func(self);
@@ -461,12 +484,14 @@ function button(_text) constructor {
 		}
 		return self;
 	};
-
 	static draw = function() {
 		if (area[0] == area[2]) {
 			exit;
 		}
-		on_click();
+		if (global.currentelement == self) {
+			on_click();
+		}
+		
 		//draw_set_color(c_black);
 		//draw_rectangle_area(area, false);
 		//draw_set_color(c_white);
@@ -474,25 +499,29 @@ function button(_text) constructor {
 		var _y = area[1] + abs((area[3] - area[1]) / 2);
 		held = false;
 		if (
-			enabled && ((!gui && mouse_in_area(area)) || (gui && mouse_in_area_gui(area)))
+			enabled && ((!gui && mouse_in_area(area)) || (gui && mouse_in_area_gui(area)) || global.currentelement == self)
 		) {
 			global.reset_button = true;
 			on_area = true;
+			global.currentelement = self;
 			on_area_func();
 		} else {
 			if (on_area) {
+				if (unselect_on_leave and global.currentelement == self) {
+					global.currentelement = noone;
+				}
 				exit_area_func();
 			}
 			on_area = false;
 		}
-		if (keyboard_selected) {
-			if (!global.reset_button) {
-				on_area = true;
-			} else {
-				global.reset_button = false;
-				keyboard_selected = false;
-			}
-		}
+		//if (keyboard_selected) {
+			//if (!global.reset_button) {
+				//on_area = true;
+			//} else {
+				//global.reset_button = false;
+				//keyboard_selected = false;
+			//}
+		//}
 		if (on_area) {
 			area = selected_area;
 			held = true;
@@ -946,12 +975,25 @@ function ui_element_list() constructor {
 	};
 
 	static next = function() {
-		selected = wrap(selected + 1, 0, array_length(list) - 1);
+		selected = wrap(selected + 1, 0, array_length(list));
+		global.currentelement = list[selected];
 	};
 
 	static previous = function() {
-		selected = wrap(selected - 1, 0, array_length(list) - 1);
+		selected = wrap(selected - 1, 0, array_length(list));
+		global.currentelement = list[selected];
 	};
+	
+	static select = function(num) {
+		if (num == 0) {
+			exit;
+		}
+		if (num > 0) {
+			next();
+		} else {
+			previous();
+		}
+	}
 
 	static get_selected = function() {
 		return list[selected];
@@ -1060,6 +1102,11 @@ function touch_control() constructor {
 	#endregion
 }
 
+/// @desc Move linearly value A to value B in the specified amount.
+/// @param {Real} a First value.
+/// @param {Real} b Second value.
+/// @param {Real} amount Amount to move.
+/// @returns {Real}
 function approach(val1, val2, amount) {
     if (val1 < val2) {
         return min(val1 + amount, val2);
