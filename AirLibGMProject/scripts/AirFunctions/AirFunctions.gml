@@ -499,7 +499,7 @@ function button(_text) constructor {
 		var _y = area[1] + abs((area[3] - area[1]) / 2);
 		held = false;
 		if (
-			enabled && ((!gui && mouse_in_area(area)) || (gui && mouse_in_area_gui(area)) || global.currentelement == self)
+			enabled && ((!gui && mouse_in_area(area)) || (gui && mouse_in_area_gui(area)))
 		) {
 			global.reset_button = true;
 			on_area = true;
@@ -522,6 +522,9 @@ function button(_text) constructor {
 				//keyboard_selected = false;
 			//}
 		//}
+		if (global.currentelement == self) {
+			on_area = true;
+		}
 		if (on_area) {
 			area = selected_area;
 			held = true;

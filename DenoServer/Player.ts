@@ -2,10 +2,9 @@ import moment from "moment";
 import { deleteRoom, getRoomByName, rooms, sendMessageToRoom } from "./Room.ts";
 import { sendMessage } from "./misc.ts";
 import { redis } from "./redis.ts";
-
+import net from 'node:net';
 export type Player = {
-  address: string;
-  port: number;
+  socket: net.socket
   uuid: string;
   name: string | undefined;
   room: string;

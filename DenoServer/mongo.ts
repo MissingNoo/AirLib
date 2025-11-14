@@ -30,7 +30,7 @@ export async function PlayerLogin(
 ) {
   if (player.loggedIn) return;
   if (findPlayerByName(username)) {
-    sendMessage("alreadyConnected", {}, player.address, player.port);
+    sendMessage("alreadyConnected", {}, player);
     console.log(`[Mongo] Player ${username} already connected!`);
     return;
   }
@@ -38,7 +38,7 @@ export async function PlayerLogin(
     if (res?.password == passwordhash) {
       player.loggedIn = true;
       player.name = username;
-      sendMessage("login", { username }, player.address, player.port);
+      sendMessage("login", { username }, player);
       console.log(`[Mongo] Player ${username} logged in!`);
     }
   });
@@ -60,7 +60,7 @@ export async function RegisterPlayer(
     console.log(`[Mongo] Player ${username} registered!`);
     PlayerLogin(player, username, passwordhash);
   } else {
-    sendMessage("username_exists", {}, player.address, player.port);
+    sendMessage("username_exists", {}, player);
   }
 }
 

@@ -7,6 +7,7 @@ password = new textbox();
 password.set_align(fa_center, fa_middle);
 password.backtext = "password";
 login = new button("Login");
+login.unselect_on_leave = true;
 login.set_function(method(self, function() {
 	new packet("login")
 	.write("username", username.text)
@@ -14,6 +15,7 @@ login.set_function(method(self, function() {
 	.send();
 }));
 register = new button("Register");
+register.unselect_on_leave = true;
 register.set_function(method(self, function() {
 	new packet("register")
 	.write("username", username.text)
