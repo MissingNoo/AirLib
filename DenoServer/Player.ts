@@ -4,7 +4,7 @@ import { sendMessage } from "./misc.ts";
 import { redis } from "./redis.ts";
 import net from 'node:net';
 export type Player = {
-  socket: net.socket
+  socket: Deno.conn
   uuid: string;
   name: string | undefined;
   room: string;

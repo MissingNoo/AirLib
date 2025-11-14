@@ -1,3 +1,5 @@
+const encoder = new TextEncoder();
+const decoder = new TextDecoder();
 //import { server } from "./main.ts";
 import {Player} from "./Player.ts";
 export function sendMessage(
@@ -12,6 +14,7 @@ export function sendMessage(
   };
   const j = JSON.stringify(data);
   console.log("Sending: " + JSON.stringify(data))
-  player.socket.write("\n" + JSON.stringify(data) + ";");
+  //player.socket.write("\n" + JSON.stringify(data) + ";");
+  player.socket.write(encoder.encode("\n" + JSON.stringify(data) + ";"))
   //player.socket.pipe(player.socket);
 }

@@ -1,3 +1,5 @@
+const encoder = new TextEncoder();
+const decoder = new TextDecoder();
 import {
     addFriend,
     getFriendList,
@@ -19,7 +21,7 @@ import {
     Player,
     players,
 } from "./Player.ts";
-const server = net.createServer((c) => {
+/*const server = net.createServer((c) => {
     c.setMaxListeners(0);
   // 'connection' listener.
   console.log('client connected');
@@ -46,7 +48,32 @@ server.on('error', (err) => {
 });
 server.listen(36692, () => {
   console.log('server bound');
+});*/
+console.log('Server started on 36692');
+const server = Deno.listen({
+  hostname: "127.0.0.1",
+  port: 36692,
+  transport: "tcp",
 });
+const connections: Deno.Conn[] = [];
+for await (const connection of server) {
+  connections.push(connection);
+  handle_connection(connection);
+}
+
+async function handle_connection(connection: Deno.Conn) {
+  while (true) {
+      const buf = new Uint8Array(1024);
+      await connection.read(buf);
+      const d = JSON.stringify(decoder.decode(buf).toString());
+      console.log("Server - received: ", d);
+      if (d === "") {
+        break;
+      }
+      handle_data(connection, d)
+      //await connection.write(encoder.encode(JSON.stringify({type:"pong"})))
+  }
+}
 
 function handle_data(c, d)
     {
