@@ -55,8 +55,8 @@ async function handle_connection(conn: Deno.Conn) {
 }
 
 function handle_data(c, data) {
-        if (data.type != "ping" && data.type != "playerMoved") {
-            console.log(data);            
+        if (data.type != "ping" && data.type != "movePlayer") {
+            //console.log(data);
         }
         const json = {type : "", message : {}};
         const player = players.find(
@@ -89,7 +89,8 @@ function handle_data(c, data) {
                 loggedIn: false,
                 lastping: moment(moment.now()),
             };        
-            let isRmanager = players.length == 0;
+            //let isRmanager = players.length == 0;
+            let isRmanager = rmanagerdata == undefined;
             players.push(p);
             redis.set("PlayerList", listPlayers().toString());
             sendMessage("uuid", { uuid: gen_uuid, rmanager : isRmanager }, p);
@@ -167,6 +168,10 @@ function handle_data(c, data) {
                         }
                   
                         case "disconnect": {
+                            if (player == rmanagerdata) {
+                                rmanagerdata = undefined
+                                console.log("[Main] Collision manager is gone!");
+                            }
                           disconnectPlayer(player);
                           break;
                         }

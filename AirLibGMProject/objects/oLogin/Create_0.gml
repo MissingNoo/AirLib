@@ -38,18 +38,8 @@ ui.add_draw("pass_label",
 	scribble("[c_black][fa_center][fa_middle]Password").draw(_x + _w / 2, _y + _h / 2);
 	AirUIFunctionEnd
 );
-ui.add_draw("username", 
-	AirUIFunctionStart
-	username.position_area(area);
-	username.draw();
-	AirUIFunctionEnd
-);
-ui.add_draw("password", 
-	AirUIFunctionStart
-	password.position_area(area);
-	password.draw();
-	AirUIFunctionEnd
-);
+ui.add_element("username", username);
+ui.add_element("password", password);
 ui.add_element("login", login);
 //ui.add_draw("login", 
 	//AirUIFunctionStart
@@ -57,10 +47,5 @@ ui.add_element("login", login);
 	//login.draw();
 	//AirUIFunctionEnd
 //);
-ui.add_draw("register", 
-	AirUIFunctionStart
-	register.position_area(area);
-	register.draw();
-	AirUIFunctionEnd
-);
+ui.add_element("register", register);
 ui.finish();

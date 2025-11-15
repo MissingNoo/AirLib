@@ -86,16 +86,6 @@ ui.add_draw("text",
 				.draw(_x + 5, _y + 5);
 	AirUIFunctionEnd 
 );
-ui.add_draw("accept", 
-	AirUIFunctionStart 
-	accept.position_area(area);
-			accept.draw();
-	AirUIFunctionEnd 
-);
-ui.add_draw("refuse", 
-	AirUIFunctionStart 
-	refuse.position_area(area);
-			refuse.draw();
-	AirUIFunctionEnd 
-);
+ui.add_element("accept", accept);
+ui.add_element("refuse", refuse);
 ui.finish();

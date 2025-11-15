@@ -575,6 +575,7 @@ function listbox() constructor {
 	list = [];
 	open = false;
 	area = undefined;
+	areaset = false;
 	pos = {left: 0, top: 0, width: 0, height: 0};
 	openarea = undefined;
 	text = "";
@@ -1008,6 +1009,10 @@ function ui_element_list() constructor {
 	static foreach = function(f) {
 		array_foreach(list, f);
 	};
+	
+	static sort = function (f) {
+		array_sort(list, f);
+	}
 }
 
 function checkbox(boolean = false) constructor {

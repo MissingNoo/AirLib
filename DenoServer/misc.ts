@@ -13,8 +13,11 @@ export function sendMessage(
     message: JSON.stringify(message),
   };
   const j = JSON.stringify(data);
-  console.log("Sending: " + JSON.stringify(data))
+  //console.log("Sending: " + JSON.stringify(data))
   //player.socket.write("\n" + JSON.stringify(data) + ";");
-  player.socket.write(encoder.encode("\n" + JSON.stringify(data) + ";"))
+  
+  player.socket.write(encoder.encode("\n" + JSON.stringify(data) + ";")).catch(err => console.error(err));
+  
+  
   //player.socket.pipe(player.socket);
 }

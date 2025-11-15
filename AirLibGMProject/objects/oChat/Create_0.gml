@@ -50,10 +50,5 @@ ui.add_draw("messages",
 	AirUIFunctionEnd
 );
 
-ui.add_draw("text_input",
-	AirUIFunctionStart
-	text_input.position_area(area);
-	text_input.draw();
-	AirUIFunctionEnd
-);
+ui.add_element("text_input", text_input);
 ui.finish();

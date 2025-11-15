@@ -104,8 +104,7 @@ server.on("message", (msg: any, rinfo: any) => {
           sendMessage(
             "roomCreated",
             { roomName: data.roomName, roomCode: room.code },
-            rinfo.address,
-            rinfo.port,
+            player
           );
         }
         break;

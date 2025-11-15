@@ -64,12 +64,7 @@ ui.add_draw("join_label",
 				.draw(_x + room_list_title_x, _y + _h / 2);
 	AirUIFunctionEnd 
 );
-ui.add_draw("join_button", 
-	AirUIFunctionStart 
-	code_button.position_area(area);
-			code_button.draw();
-	AirUIFunctionEnd 
-);
+ui.add_element("join_button", code_button);
 ui.add_draw("code_input", 
 	AirUIFunctionStart 
 	draw_roundrect_ext(_x, _y, _x + _w, _y + _h, roundness_x, roundness_y, true);
@@ -136,10 +131,5 @@ ui.add_draw("room_list",
 
 	AirUIFunctionEnd 
 );
-ui.add_draw("reload_button", 
-	AirUIFunctionStart 
-	reload_button.position(_x, _y, _x + _w, _y + _h);
-			reload_button.draw();
-	AirUIFunctionEnd 
-);
+ui.add_element("reload_button", reload_button);
 ui.finish();
