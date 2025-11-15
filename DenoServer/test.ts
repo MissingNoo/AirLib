@@ -29,34 +29,27 @@ const server = Deno.listen({
   transport: "tcp",
 });
 const connections: Deno.Conn[] = [];
-/*for await (const conn of listener) {
-
-  const buf = new Uint8Array(1024);
-
-  await conn.read(buf);
-
-  console.log("Server - received: ", decoder.decode(buf));
-
-  await conn.write(encoder.encode(JSON.stringify({type:"pong"})))
-}*/
-
 for await (const connection of server) {
     connections.push(connection);
     handle_connection(connection);
 }
-  
 async function handle_connection(conn: Deno.Conn) {
     const buf = new Uint8Array(1024);
     while (true) {
-        const bytesRead = await conn.read(buf);
+        let bytesRead
+        try {
+            bytesRead = await conn.read(buf);
+        } catch (error) {
+            console.log(error);
+        }
+        
         if (bytesRead === null) break; // Connection closed
         const data = JSON.parse(decoder.decode(buf.subarray(0, bytesRead)));
         handle_data(conn, data)
     }
 }
 
-function handle_data(c, data)
-    {
+function handle_data(c, data) {
         if (data.type != "ping") {
             console.log(data);            
         }

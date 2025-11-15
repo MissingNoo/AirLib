@@ -236,8 +236,8 @@
   "resourceType":"GMProject",
   "resourceVersion":"2.0",
   "RoomOrderNodes":[
-    {"roomId":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
     {"roomId":{"name":"rUIEditor","path":"rooms/rUIEditor/rUIEditor.yy",},},
+    {"roomId":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
     {"roomId":{"name":"rColTest","path":"rooms/rColTest/rColTest.yy",},},
     {"roomId":{"name":"R2","path":"rooms/R2/R2.yy",},},
     {"roomId":{"name":"R3","path":"rooms/R3/R3.yy",},},

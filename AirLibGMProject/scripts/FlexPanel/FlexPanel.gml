@@ -190,7 +190,9 @@ function window(struct, _generate = false) constructor {
 			var name = draw_list[i][0];
 			var pos = draw_list[i][1];
 			var data = draw_list[i][2];
-			draw_list[i][3](name, pos, data);
+			if (node_is_visible(name)) {
+				draw_list[i][3](name, pos, data);
+			}
 		}
 	};
 
@@ -248,11 +250,26 @@ function window(struct, _generate = false) constructor {
 	};
 
 	static node_visible = function(n, b = undefined) {
-		var nn = flexpanel_node_get_child(root, n);
+		var nn = get_child(n);
+		if (is_undefined(nn)) {
+			return;
+		}
+		var childnum = 0;
+		if is_string(n) childnum = flexpanel_node_get_num_children(flexpanel_node_get_child(root, n));
 		if (is_undefined(b)) {
 			flexpanel_node_style_set_display(nn, !flexpanel_node_style_get_display(nn));
+			for (var i = 0; i < childnum; i++) {
+				var ch = flexpanel_node_get_struct(flexpanel_node_get_child(nn, i));
+				//show_debug_message("____________________________");
+				node_visible(ch.name, !b);
+			}
 		} else {
 			flexpanel_node_style_set_display(nn, !b);
+			for (var i = 0; i < childnum; i++) {
+				var ch = flexpanel_node_get_struct(flexpanel_node_get_child(nn, i));
+				//show_debug_message("____________________________");
+				node_visible(ch.name, !b);
+			}
 		}
 
 		recalculate();
@@ -279,6 +296,9 @@ function window(struct, _generate = false) constructor {
 	};
 
 	static get_child = function(node) {
+		if (!is_string(node)) {
+			node = flexpanel_node_get_struct(node).name;
+		}
 		return flexpanel_node_get_child(root, node);
 	};
 
@@ -911,7 +931,7 @@ enum airui_fit {
 	stretch,
 }
 
-function airui_draw_sprite_centered(name, spr, pos, fit, scalediv = 1, alpha = 1) {
+function airui_draw_sprite_centered(name, spr, pos, fit, scalediv = 1, alpha = 1, subimg = 0, xoff = 0, yoff = 0) {
 	switch (fit) {
 		default:
 		case airui_fit.height:
@@ -921,15 +941,18 @@ function airui_draw_sprite_centered(name, spr, pos, fit, scalediv = 1, alpha = 1
 			var scale = global.flexcache.get(name);
 			draw_sprite_ext(
 				spr,
-				0,
-				(pos.left + pos.width / 2),
-				(pos.top + pos.height / 2),
+				subimg,
+				(pos.left + pos.width / 2) + xoff,
+				(pos.top + pos.height / 2) + yoff,
 				scale * scalediv,
 				scale * scalediv,
 				0,
 				c_white,
 				alpha
 			);
+			break;
+		case airui_fit.stretch:
+			draw_sprite_stretched_ext(spr, subimg, pos.left, pos.top, pos.width, pos.height, c_white, alpha);
 			break;
 	}
 }

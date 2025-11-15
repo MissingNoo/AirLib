@@ -37,52 +37,56 @@ if (oUI.editing != undefined && name == oUI.editing) {
 		&& deltimer == 0
 	) {
 		deltimer = 60;
-		flexpanel_node_remove_child(parent, ele);
-		ele = undefined;
-		with (oUIElement) {
-			if (data.owner == oEditableUI.ui) {
-				instance_destroy();
-			}
-		}
-		oEditableUI.ui.recalculate();
+		delete_el(ele);
+	}
+	if (
+		device_mouse_check_button_pressed(0, mb_right) 
+		&& parent != undefined
+		&& ele != undefined
+		&& mouse_in_area_gui([x, y, x + width, y + height])
+	) {
+		global.__air.last_ele = ele;
+		global.__air.last_par = parent;
+		var copya = new button("Copy Style");
+		copya.set_function(method(self, function () {
+			copy_style(global.__air.last_ele);
+		}));
+		var copyb = new button("Copy");
+		copyb.set_function(method(self, function () {
+			copy(global.__air.last_par, global.__air.last_ele, false);
+		}));
+		var cut = new button("Cut");
+		cut.set_function(method(self, function () {
+			copy(global.__air.last_par, global.__air.last_ele, true);
+		}));
+		var pasteb = new button("Paste");
+		pasteb.set_function(method(self, function () {
+			paste();
+		}));
+		var del = new button("Delete");
+		del.set_function(method(self, function () {
+			delete_el(global.__air.last_ele);
+		}));
+		new context_menu(name).add_button(copya).add_button(copyb).add_button(cut).add_button(pasteb).add_button(del);
+
 	}
 	if (
 		keyboard_check(vk_control) 
-		&& keyboard_check_released(ord("X")) 
 		&& parent != undefined
 		&& ele != undefined
 		&& mouse_in_area_gui([x, y, x + width, y + height])
 		&& deltimer == 0
 	) {
-		deltimer = 60;
-		oEditableUI.copy = flexpanel_node_get_struct(ele);
-		flexpanel_node_remove_child(parent, ele);
-		ele = undefined;
-		with (oUIElement) {
-			if (data.owner == oEditableUI.ui) {
-				instance_destroy();
-			}
+		if (keyboard_check_released(ord("C"))) {
+			copy(parent, ele);
 		}
-		oEditableUI.ui.recalculate();
-	}
-	if (
-		keyboard_check(vk_control) 
-		&& keyboard_check_released(ord("V")) 
-		&& ele != undefined
-		&& mouse_in_area_gui([x, y, x + width, y + height])
-		&& deltimer == 0
-	) {
-		deltimer = 60;
-		var ele = flexpanel_node_get_child(oEditableUI.ui.root, oUI.editing);
-		var paste_node = flexpanel_create_node(oEditableUI.copy);
-		flexpanel_node_insert_child(ele, paste_node, flexpanel_node_get_num_children(ele));
-		ele = undefined;
-		with (oUIElement) {
-			if (data.owner == oEditableUI.ui) {
-				instance_destroy();
-			}
+		if (keyboard_check_released(ord("X"))) {
+			copy(parent, ele, true);
 		}
-		oEditableUI.ui.recalculate();
+		if (keyboard_check_released(ord("V")) ) {
+			paste();
+		}
+		
 	}
 	var move_offset =
 		-keyboard_check_released(vk_pageup)

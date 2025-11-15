@@ -1,6 +1,7 @@
 randomize();
 __AirLibLoadTemplates();
 copy = {};
+copymode = "node";
 down = false;
 up = false;
 edit_node = undefined;
