@@ -26,8 +26,7 @@ export function joinRoom(
     sendMessage(
       "joinRoomFailed",
       { reason: "Room not found" },
-      player.address,
-      player.port,
+      player
     );
     return;
   }
@@ -36,8 +35,7 @@ export function joinRoom(
     sendMessage(
       "joinRoomFailed",
       { reason: "Already in a room" },
-      player.address,
-      player.port,
+      player
     );
   } else {
     player.room = room.RoomName;
@@ -46,8 +44,7 @@ export function joinRoom(
     sendMessage(
       "joinedRoom",
       { roomName: roomName },
-      player.address,
-      player.port,
+      player
     );
     sendMessageToRoom(
       player.room,

@@ -76,6 +76,7 @@
     {"id":{"name":"oNewUI","path":"objects/oNewUI/oNewUI.yy",},},
     {"id":{"name":"oOtherPlayer","path":"objects/oOtherPlayer/oOtherPlayer.yy",},},
     {"id":{"name":"oTagManager","path":"objects/oTagManager/oTagManager.yy",},},
+    {"id":{"name":"oTeste","path":"objects/oTeste/oTeste.yy",},},
     {"id":{"name":"oTextManager","path":"objects/oTextManager/oTextManager.yy",},},
     {"id":{"name":"oUI","path":"objects/oUI/oUI.yy",},},
     {"id":{"name":"oUIElement","path":"objects/oUIElement/oUIElement.yy",},},
@@ -236,8 +237,8 @@
   "resourceType":"GMProject",
   "resourceVersion":"2.0",
   "RoomOrderNodes":[
-    {"roomId":{"name":"rUIEditor","path":"rooms/rUIEditor/rUIEditor.yy",},},
     {"roomId":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
+    {"roomId":{"name":"rUIEditor","path":"rooms/rUIEditor/rUIEditor.yy",},},
     {"roomId":{"name":"rColTest","path":"rooms/rColTest/rColTest.yy",},},
     {"roomId":{"name":"R2","path":"rooms/R2/R2.yy",},},
     {"roomId":{"name":"R3","path":"rooms/R3/R3.yy",},},

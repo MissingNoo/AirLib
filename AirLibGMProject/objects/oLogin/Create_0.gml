@@ -50,12 +50,13 @@ ui.add_draw("password",
 	password.draw();
 	AirUIFunctionEnd
 );
-ui.add_draw("login", 
-	AirUIFunctionStart
-	login.position_area(area);
-	login.draw();
-	AirUIFunctionEnd
-);
+ui.add_element("login", login);
+//ui.add_draw("login", 
+	//AirUIFunctionStart
+	//login.position_area(area);
+	//login.draw();
+	//AirUIFunctionEnd
+//);
 ui.add_draw("register", 
 	AirUIFunctionStart
 	register.position_area(area);

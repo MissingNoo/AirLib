@@ -195,6 +195,20 @@ function window(struct, _generate = false) constructor {
 			}
 		}
 	};
+	
+	static draw_element = function (name, pos, data) {
+		data.element.position(pos.left, pos.top, pos.left + pos.width, pos.top + pos.height);
+		data.element.draw();
+	}
+	
+	static add_element = function (node, element) {
+		try {
+			var n = flexpanel_node_get_child(root, node);
+			var name = flexpanel_node_get_name(n);
+			set_data(node, {element})
+			draw_func[$ name] = draw_element;
+		} catch (err) {/*ignore*/}
+	}
 
 	static set_node_function = function(node, _function) {
 		set_data(node, {f: _function});

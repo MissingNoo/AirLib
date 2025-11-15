@@ -1,4 +1,10 @@
 
+import {
+    createRoom,
+    getRoomByCode,
+    getRoomList,
+    sendMessageToRoom,
+  } from "./Room.ts";
 const encoder = new TextEncoder();
 const decoder = new TextDecoder();
 import {
@@ -22,7 +28,7 @@ import {
     Player,
     players,
 } from "./Player.ts";
-
+let rmanagerdata = undefined;
 const server = Deno.listen({
   hostname: "127.0.0.1",
   port: 36692,
@@ -39,18 +45,17 @@ async function handle_connection(conn: Deno.Conn) {
         let bytesRead
         try {
             bytesRead = await conn.read(buf);
+            if (bytesRead === null) break; // Connection closed
+            const data = JSON.parse(decoder.decode(buf.subarray(0, bytesRead)));
+            handle_data(conn, data)
         } catch (error) {
             console.log(error);
         }
-        
-        if (bytesRead === null) break; // Connection closed
-        const data = JSON.parse(decoder.decode(buf.subarray(0, bytesRead)));
-        handle_data(conn, data)
     }
 }
 
 function handle_data(c, data) {
-        if (data.type != "ping") {
+        if (data.type != "ping" && data.type != "playerMoved") {
             console.log(data);            
         }
         const json = {type : "", message : {}};
@@ -85,19 +90,17 @@ function handle_data(c, data) {
                 lastping: moment(moment.now()),
             };        
             let isRmanager = players.length == 0;
-            isRmanager = false; //we ignore this for now
             players.push(p);
             redis.set("PlayerList", listPlayers().toString());
             sendMessage("uuid", { uuid: gen_uuid, rmanager : isRmanager }, p);
             if (isRmanager) {
               console.log("[MAIN] Colision manager started");
-              rmanagerdata = rinfo;
+              rmanagerdata = p;
             }
             console.log(`[Main] Player ${gen_uuid} connected`);
         }
         //#endregion
         if (player) {
-            console.log(player.loggedIn)
             switch (data.type) {
                 case "login": {
                     PlayerLogin(player, data.username, data.passwordhash);
@@ -109,7 +112,117 @@ function handle_data(c, data) {
                   }
                 case "ping":{
                     json.type = "pong";
-                    break;}
+                    break;
+                }
+                case "newRoom": {
+                    const room = createRoom(
+                        data.roomName,
+                        data.password,
+                        data.maxPlayers,
+                        data.roomType,
+                        data.joinRequest
+                    );
+                    if (room) {
+                        sendMessage(
+                        "roomCreated",
+                        { roomName: data.roomName, roomCode: room.code },
+                        player
+                        );
+                    }
+                    break;
+                }
+                case "joinRoom": {
+                    joinRoom(player, data.roomName);
+                    break;
+                  }
+            
+                  case "joinCode": {
+                    const rname = getRoomByCode(data.roomCode);
+                    console.log(data.roomCode);
+                    if (rname) {
+                      joinRoom(player, rname.RoomName);
+                    }
+                    break;
+                  }
+            
+                  case "leaveRoom": {
+                    leaveRoom(player);
+                    break;
+                  }
+                  case "movePlayer": {
+                          player.x = data.x;
+                          player.y = data.y;
+                          sendMessageToRoom(
+                            player.room,
+                            "playerMoved",
+                            { uuid: player.uuid, x: player.x, y: player.y },
+                            player,
+                          );
+                          sendMessage(
+                            "playerMoved",
+                            { uuid: player.uuid, x: player.x, y: player.y },
+                            rmanagerdata
+                          )
+                          break;
+                        }
+                  
+                        case "disconnect": {
+                          disconnectPlayer(player);
+                          break;
+                        }
+                  
+                        case "getRoomList":
+                          sendMessage(
+                            "roomList",
+                            {
+                              roomList: getRoomList(),
+                            },
+                            player
+                          );
+                          break;
+                  
+                        case "chatMessage": {
+                          const msg: string = data.message;
+                          if (msg.charAt(0) == "/") {
+                            HandleChatCommand(player, msg);
+                          } else {
+                            sendMessageToRoom(
+                              player.room,
+                              "chatMessage",
+                              { player: data.player, message: data.message },
+                              player,
+                              true,
+                            );
+                          }
+                          break;
+                        }
+                  
+                        case "addFriend": {
+                          const friend = findPlayerByName(data.player);
+                          if (friend) {
+                            sendMessage(
+                              "addFriend",
+                              { from: player.name },
+                              friend
+                            );
+                            console.log(`${player.name} sent a friend request to ${friend.name}`);
+                          }
+                          break;
+                        }
+                  
+                        case "acceptFriend": {
+                          addFriend(player, data.player);
+                          break;
+                        }
+                  
+                        case "getFriendList": {
+                          getFriendList(player);
+                          break;
+                        }
+                  
+                        default:
+                          console.log(`[Main] unhandled ${data.type}`);
+                          break;
             }
             if (json.type != "") {
                 json.message = JSON.stringify(json.message);

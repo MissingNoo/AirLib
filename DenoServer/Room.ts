@@ -100,7 +100,7 @@ export function sendMessageToRoom(
     if (player.uuid === owner.uuid && !sendToOwner) {
       return;
     }
-    sendMessage(type, message, player.address, player.port);
+    sendMessage(type, message, player);
   });
 }
 
