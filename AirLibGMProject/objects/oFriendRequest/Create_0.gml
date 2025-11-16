@@ -68,7 +68,7 @@ ui.center();
 accept = new button("Accept");
 accept
 	.set_function(method(self, function() {
-		new packet("acceptFriend").write("player", player).send()
+		new packet("acceptFriend").write("player", player).send();
 		instance_destroy();
 	}));
 

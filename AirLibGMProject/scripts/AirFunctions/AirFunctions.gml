@@ -375,7 +375,7 @@ function textbox() constructor {
 		var _text = text == "" ? backtext : text;
 		var _x = area[0];
 
-		scribble($"{align}[Fnt][{textcolor}] {_text}")
+		scribble($"{align}[Fnt][{textcolor}] {_text}{selected ? "_" : ""}")
 			.scale_to_box(
 				area[2] - area[0] - string_width("X") - 2,
 				area[3] - area[1] - 3,
