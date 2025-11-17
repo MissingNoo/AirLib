@@ -33,7 +33,7 @@ import {
 let rmanagerdata:Player;
 const server = Deno.listen({
   hostname: "127.0.0.1",
-  port: 36692,
+  port: server_port,
   transport: "tcp",
 });
 const connections: Deno.Conn[] = [];
