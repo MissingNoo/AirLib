@@ -11,8 +11,8 @@ try {
   console.error("[Mongo] Can't connect to the DB!");
   Deno.exit();
 }
-
-export const db = mongo.db(Deno.env.get("mongodb") ?? "AirNetwork");
+import {dbname} from "./config.ts";
+export const db = mongo.db(dbname);
 
 interface PlayerSchema {
   username: string;

@@ -1,4 +1,5 @@
 /// <reference lib="deno.ns" />
+import {server_port} from "./config.ts";
 import { HandleChatCommand } from "./chat.ts";
 import {
   createRoom,
