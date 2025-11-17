@@ -1,7 +1,24 @@
 /// <reference lib="deno.ns" />
-import "jsr:@std/dotenv/load";
-import dgram from "node:dgram";
+import { HandleChatCommand } from "./chat.ts";
+import {
+  createRoom,
+  getRoomByCode,
+  getRoomList,
+  sendMessageToRoom,
+} from "./Room.ts";
+const encoder = new TextEncoder();
+const decoder = new TextDecoder();
+import {
+  addFriend,
+  getFriendList,
+  PlayerLogin,
+  RegisterPlayer,
+} from "./mongo.ts";
+import { sendMessage } from "./misc.ts";
+import { redis } from "./redis.ts";
+import net from "node:net";
 import moment from "moment";
+import { randomUUID } from "node:crypto";
 import {
   disconnectAfk,
   disconnectPlayer,
@@ -12,44 +29,48 @@ import {
   Player,
   players,
 } from "./Player.ts";
-import {
-  createRoom,
-  getRoomByCode,
-  getRoomList,
-  sendMessageToRoom,
-} from "./Room.ts";
-import { randomUUID } from "node:crypto";
-import { sendMessage } from "./misc.ts";
-import { redis } from "./redis.ts";
-import {
-  addFriend,
-  getFriendList,
-  PlayerLogin,
-  RegisterPlayer,
-} from "./mongo.ts";
-import { HandleChatCommand } from "./chat.ts";
-export const server = dgram.createSocket("udp4");
-redis.set("PlayerList", listPlayers().toString());
-const PORT = 36692;
-server.bind(PORT);
-import { addScore } from "./scores.ts";
-let rmanagerdata = undefined;
-// deno-lint-ignore no-explicit-any
-server.on("message", (msg: any, rinfo: any) => {
-  disconnectAfk();
-  const data = JSON.parse(msg.toString());
+let rmanagerdata:Player;
+const server = Deno.listen({
+  hostname: "127.0.0.1",
+  port: 36692,
+  transport: "tcp",
+});
+const connections: Deno.Conn[] = [];
+for await (const connection of server) {
+  connections.push(connection);
+  handle_connection(connection);
+}
+async function handle_connection(conn: Deno.Conn) {
+  const buf = new Uint8Array(1024);
+  while (true) {
+    let bytesRead;
+    try {
+      bytesRead = await conn.read(buf);
+      if (bytesRead === null) break; // Connection closed
+      const data = JSON.parse(decoder.decode(buf.subarray(0, bytesRead)));
+      handle_data(conn, data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+}
+
+function handle_data(c:Deno.Conn, data:any) {
+  if (data.type != "ping" && data.type != "movePlayer") {
+    //console.log(data);
+  }
+  const json = { type: "", message: {} };
   const player = players.find(
-    (player) => player.address === rinfo.address && player.port === rinfo.port,
+    (player) => player.uuid === data.uuid,
   );
-  // If the player is not connected, handle the connection
-  if (data.type === "connect") {
-    if (data.uuid !== "") {
+  //#region player login
+  if (data.type == "connect") {
+    if (data.uuid !== "") { //user have an uuid set for the client already
       const existingPlayer = players.find(
-        (player) => player.uuid === data.uuid,
+        (player) => player.uuid === data.uuid, //find the player
       );
       if (existingPlayer) {
-        existingPlayer.address = rinfo.address;
-        existingPlayer.port = rinfo.port;
+        existingPlayer.socket = c;
         console.log(`[Main] Player ${data.uuid} reconnected`);
         return;
       } else {
@@ -60,36 +81,42 @@ server.on("message", (msg: any, rinfo: any) => {
     }
     const gen_uuid = randomUUID();
     const p: Player = {
+      socket: c,
       uuid: gen_uuid,
       name: gen_uuid,
       room: "",
-      address: rinfo.address,
-      port: rinfo.port,
       x: 0,
       y: 0,
       loggedIn: false,
       lastping: moment(moment.now()),
     };
-    console.log(players.length);
-    let isRmanager = players.length == 0;
+    //let isRmanager = players.length == 0;
+    let isRmanager = rmanagerdata === undefined || !rmanagerdata.loggedIn;
     players.push(p);
     redis.set("PlayerList", listPlayers().toString());
-    sendMessage("uuid", { uuid: gen_uuid, rmanager : isRmanager }, rinfo.address, rinfo.port);
+    sendMessage("uuid", { uuid: gen_uuid, rmanager: isRmanager }, p);
     if (isRmanager) {
       console.log("[MAIN] Colision manager started");
-      rmanagerdata = rinfo;
+      rmanagerdata = p;
+      rmanagerdata.loggedIn = true;
     }
     console.log(`[Main] Player ${gen_uuid} connected`);
   }
-  // If the player is already connected, handle the message
+  //#endregion
   if (player) {
     switch (data.type) {
-      case "login": {
-        PlayerLogin(player, data.username, data.passwordhash);
-        break;
-      }
+      case "login":
+        {
+          PlayerLogin(player, data.username, data.passwordhash);
+          break;
+        }
+        c;
       case "register": {
         RegisterPlayer(player, data.username, data.passwordhash);
+        break;
+      }
+      case "ping": {
+        json.type = "pong";
         break;
       }
       case "newRoom": {
@@ -98,18 +125,17 @@ server.on("message", (msg: any, rinfo: any) => {
           data.password,
           data.maxPlayers,
           data.roomType,
-          data.joinRequest
+          data.joinRequest,
         );
         if (room) {
           sendMessage(
             "roomCreated",
             { roomName: data.roomName, roomCode: room.code },
-            player
+            player,
           );
         }
         break;
       }
-
       case "joinRoom": {
         joinRoom(player, data.roomName);
         break;
@@ -128,18 +154,6 @@ server.on("message", (msg: any, rinfo: any) => {
         leaveRoom(player);
         break;
       }
-
-      case "ping": {
-        sendMessage(
-          "pong",
-          {},
-          rinfo.address,
-          rinfo.port,
-        );
-        player.lastping = moment(moment.utc());
-        break;
-      }
-
       case "movePlayer": {
         player.x = data.x;
         player.y = data.y;
@@ -152,13 +166,16 @@ server.on("message", (msg: any, rinfo: any) => {
         sendMessage(
           "playerMoved",
           { uuid: player.uuid, x: player.x, y: player.y },
-          rmanagerdata.address,
-          rmanagerdata.port,
-        )
+          rmanagerdata,
+        );
         break;
       }
 
       case "disconnect": {
+        if (player == rmanagerdata) {
+          rmanagerdata.loggedIn = false;
+          console.log("[Main] Collision manager is gone!");
+        }
         disconnectPlayer(player);
         break;
       }
@@ -169,8 +186,7 @@ server.on("message", (msg: any, rinfo: any) => {
           {
             roomList: getRoomList(),
           },
-          rinfo.address,
-          rinfo.port,
+          player,
         );
         break;
 
@@ -196,8 +212,7 @@ server.on("message", (msg: any, rinfo: any) => {
           sendMessage(
             "addFriend",
             { from: player.name },
-            friend.address,
-            friend.port,
+            friend,
           );
           console.log(`${player.name} sent a friend request to ${friend.name}`);
         }
@@ -218,6 +233,11 @@ server.on("message", (msg: any, rinfo: any) => {
         console.log(`[Main] unhandled ${data.type}`);
         break;
     }
+    if (json.type != "") {
+      json.message = JSON.stringify(json.message);
+      c.write(encoder.encode(JSON.stringify(json)));
+      //c.write(JSON.stringify(json) + ";");
+      //c.pipe(c);
+    }
   }
-});
-console.log(`[Main] Server is listening on port ${PORT}`);
+}

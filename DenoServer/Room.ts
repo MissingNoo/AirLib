@@ -10,7 +10,7 @@ export type Room = {
   maxPlayers: number;
   type: string;
   code: string;
-  joinRequest : boolean
+  joinRequest: boolean;
 };
 
 export let rooms: Room[] = [];
@@ -20,7 +20,7 @@ export function createRoom(
   password: string,
   maxPlayers: number,
   type: string,
-  joinRequest: number
+  joinRequest: number,
 ) {
   if (getRoomByName(roomName)) {
     console.log(`[Room] Room ${roomName} already exists`);
@@ -35,7 +35,7 @@ export function createRoom(
     maxPlayers: maxPlayers,
     code: randomUUID().split("-")[0],
     type: type,
-    joinRequest: joinRequest == 1
+    joinRequest: joinRequest == 1,
   };
   rooms.push(newRoom);
   console.log(
@@ -59,6 +59,7 @@ type roominfo = {
   players: number;
   maxPlayers: number;
   type: string;
+  joinRequest: boolean;
 };
 
 export function getRoomList() {
@@ -69,7 +70,7 @@ export function getRoomList() {
       players: element.Players.length,
       maxPlayers: element.maxPlayers,
       type: element.type,
-      joinRequest: element.joinRequest
+      joinRequest: element.joinRequest,
     };
     roomlist.push(r);
   });

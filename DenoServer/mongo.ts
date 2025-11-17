@@ -102,14 +102,14 @@ export async function addFriend(player: Player, otherplayer: string) {
   sendMessage(
     "friendlist",
     { friends: player1friends },
-    player
+    player,
   );
   const player2 = findPlayerByName(otherplayer);
   if (player2) {
     sendMessage(
       "friendlist",
       { friends: player2friends },
-      player2
+      player2,
     );
   }
 }
@@ -127,6 +127,6 @@ export async function getFriendList(player: Player) {
   sendMessage(
     "friendlist",
     { friends: friends },
-    player
+    player,
   );
 }

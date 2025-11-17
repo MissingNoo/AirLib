@@ -2,9 +2,9 @@ import moment from "moment";
 import { deleteRoom, getRoomByName, rooms, sendMessageToRoom } from "./Room.ts";
 import { sendMessage } from "./misc.ts";
 import { redis } from "./redis.ts";
-import net from 'node:net';
+import net from "node:net";
 export type Player = {
-  socket: Deno.conn
+  socket: Deno.Conn;
   uuid: string;
   name: string | undefined;
   room: string;
@@ -26,7 +26,7 @@ export function joinRoom(
     sendMessage(
       "joinRoomFailed",
       { reason: "Room not found" },
-      player
+      player,
     );
     return;
   }
@@ -35,7 +35,7 @@ export function joinRoom(
     sendMessage(
       "joinRoomFailed",
       { reason: "Already in a room" },
-      player
+      player,
     );
   } else {
     player.room = room.RoomName;
@@ -44,7 +44,7 @@ export function joinRoom(
     sendMessage(
       "joinedRoom",
       { roomName: roomName },
-      player
+      player,
     );
     sendMessageToRoom(
       player.room,
@@ -123,4 +123,3 @@ export function disconnectPlayer(player: Player) {
   console.log(`[Players] Player ${player.uuid} disconnected`);
   redis.set("PlayerList", listPlayers().toString());
 }
-

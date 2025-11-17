@@ -4,14 +4,12 @@
     "jsr:@std/dotenv@*": "0.225.4",
     "npm:@types/node@*": "22.12.0",
     "npm:@valkey/valkey-glide@*": "2.0.1",
-    "npm:dgram@^1.0.1": "1.0.1",
     "npm:iovalkey@~0.3.3": "0.3.3",
     "npm:json@11": "11.0.0",
     "npm:moment@^2.30.1": "2.30.1",
     "npm:mongodb@*": "6.16.0",
     "npm:mongodb@^6.16.0": "6.16.0",
-    "npm:node-redis@~0.1.7": "0.1.7",
-    "npm:redis@^5.0.1": "5.0.1_@redis+client@5.0.1"
+    "npm:node-redis@~0.1.7": "0.1.7"
   },
   "jsr": {
     "@std/dotenv@0.225.4": {
@@ -61,36 +59,6 @@
     },
     "@protobufjs/utf8@1.1.0": {
       "integrity": "sha512-Vvn3zZrhQZkkBE8LSuW3em98c0FwgO4nxzv6OdSxPKJIEKY2bGbHn+mhGIPerzI4twdxaP8/0+06HBpwf345Lw=="
-    },
-    "@redis/bloom@5.0.1_@redis+client@5.0.1": {
-      "integrity": "sha512-F7L+rnuJvq/upKaVoEgsf8VT7g5pLQYWRqSUOV3uO4vpVtARzSKJ7CLyJjVsQS+wZVCGxsLMh8DwAIDcny1B+g==",
-      "dependencies": [
-        "@redis/client"
-      ]
-    },
-    "@redis/client@5.0.1": {
-      "integrity": "sha512-k0EJvlMGEyBqUD3orKe0UMZ66fPtfwqPIr+ZSd853sXj2EyhNtPXSx+J6sENXJNgAlEBhvD+57Dwt0qTisKB0A==",
-      "dependencies": [
-        "cluster-key-slot"
-      ]
-    },
-    "@redis/json@5.0.1_@redis+client@5.0.1": {
-      "integrity": "sha512-t94HOTk5myfhvaHZzlUzk2hoUvH2jsjftcnMgJWuHL/pzjAJQoZDCUJzjkoXIUjWXuyJixTguaaDyOZWwqH2Kg==",
-      "dependencies": [
-        "@redis/client"
-      ]
-    },
-    "@redis/search@5.0.1_@redis+client@5.0.1": {
-      "integrity": "sha512-wipK6ZptY7K68B7YLVhP5I/wYCDUU+mDJMyJiUcQLuOs7/eKOBc8lTXKUSssor8QnzZSPy4A5ulcC5PZY22Zgw==",
-      "dependencies": [
-        "@redis/client"
-      ]
-    },
-    "@redis/time-series@5.0.1_@redis+client@5.0.1": {
-      "integrity": "sha512-k6PgbrakhnohsEWEAdQZYt3e5vSKoIzpKvgQt8//lnWLrTZx+c3ed2sj0+pKIF4FvnSeuXLo4bBWcH0Z7Urg1A==",
-      "dependencies": [
-        "@redis/client"
-      ]
     },
     "@types/node@22.12.0": {
       "integrity": "sha512-Fll2FZ1riMjNmlmJOdAyY5pUbkftXslB5DgEzlIuNaiWhXd00FhWxVC/r4yV/4wBb9JfImTu+jiSvXTkJ7F/gA==",
@@ -166,10 +134,6 @@
     },
     "denque@2.1.0": {
       "integrity": "sha512-HVQE3AAb/pxF8fQAoiqpvg9i3evqug3hoiwakOyZAwJm+6vZehbkYXZ0l4JxS+I3QxM97v5aaRNhj8v5oBhekw=="
-    },
-    "dgram@1.0.1": {
-      "integrity": "sha512-zJVFL1EWfKtE0z2VN6qfpn/a+qG1viEzcwJA0EjtzS76ONSE3sEyWBwEbo32hS4IFw/EWVuWN+8b89aPW6It2A==",
-      "deprecated": true
     },
     "iovalkey@0.3.3": {
       "integrity": "sha512-4rTJX6Q5wTYEvxboXi8DsEiUo+OvqJGtLYOSGm37KpdRXsG5XJjbVtYKGJpPSWP+QT7rWscA4vsrdmzbEbenpw==",
@@ -254,16 +218,6 @@
       "integrity": "sha512-DJnGAeenTdpMEH6uAJRK/uiyEIH9WVsUmoLwzudwGJUwZPp80PDBWPHXSAGNPwNvIXAbe7MSUB1zQFugFml66A==",
       "dependencies": [
         "redis-errors"
-      ]
-    },
-    "redis@5.0.1_@redis+client@5.0.1": {
-      "integrity": "sha512-J8nqUjrfSq0E8NQkcHDZ4HdEQk5RMYjP3jZq02PE+ERiRxolbDNxPaTT4xh6tdrme+lJ86Goje9yMt9uzh23hQ==",
-      "dependencies": [
-        "@redis/bloom",
-        "@redis/client",
-        "@redis/json",
-        "@redis/search",
-        "@redis/time-series"
       ]
     },
     "sparse-bitfield@3.0.3": {
@@ -395,18 +349,14 @@
   },
   "workspace": {
     "dependencies": [
-      "npm:dgram@^1.0.1",
       "npm:json@11",
-      "npm:node-redis@~0.1.7",
-      "npm:redis@^5.0.1"
+      "npm:node-redis@~0.1.7"
     ],
     "packageJson": {
       "dependencies": [
-        "npm:dgram@^1.0.1",
         "npm:iovalkey@~0.3.3",
         "npm:moment@^2.30.1",
-        "npm:mongodb@^6.16.0",
-        "npm:redis@^5.0.1"
+        "npm:mongodb@^6.16.0"
       ]
     }
   }

@@ -8,7 +8,7 @@ export function HandleChatCommand(player: Player, msg: string) {
       sendMessage(
         "chatMessage",
         { player: "[[Server]", message: "Pong" },
-        player
+        player,
       );
       break;
 
