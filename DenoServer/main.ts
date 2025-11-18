@@ -1,11 +1,12 @@
 /// <reference lib="deno.ns" />
-import {server_port} from "./config.ts";
+import { use_colision_manager, server_port} from "./config.ts";
 import { HandleChatCommand } from "./chat.ts";
 import {
   createRoom,
   getRoomByCode,
   getRoomList,
   sendMessageToRoom,
+  rooms
 } from "./Room.ts";
 const encoder = new TextEncoder();
 const decoder = new TextDecoder();
@@ -164,11 +165,13 @@ function handle_data(c:Deno.Conn, data:any) {
           { uuid: player.uuid, x: player.x, y: player.y },
           player,
         );
-        sendMessage(
-          "playerMoved",
-          { uuid: player.uuid, x: player.x, y: player.y },
-          rmanagerdata,
-        );
+        if (use_colision_manager) {
+          sendMessage(
+            "playerMoved",
+            { uuid: player.uuid, x: player.x, y: player.y },
+            rmanagerdata,
+          );
+        }
         break;
       }
 
@@ -204,6 +207,16 @@ function handle_data(c:Deno.Conn, data:any) {
             true,
           );
         }
+        break;
+      }
+
+      case "playersInRoom": {
+        const room = rooms.find((room) => room.RoomName === player.room);
+        sendMessage(
+          "playersInRoom",
+          { players: room.Players },
+          player,
+        );
         break;
       }
 
