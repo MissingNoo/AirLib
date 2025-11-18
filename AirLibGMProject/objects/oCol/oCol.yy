@@ -6,8 +6,8 @@
   "name":"oCol",
   "overriddenProperties":[],
   "parent":{
-    "name":"AirLibGMProject",
-    "path":"AirLibGMProject.yyp",
+    "name":"ColisionManager",
+    "path":"folders/AirNetworking/ColisionManager.yy",
   },
   "parentObjectId":null,
   "persistent":false,

@@ -17,8 +17,8 @@
   ],
   "name":"rColTest",
   "parent":{
-    "name":"AirLibGMProject",
-    "path":"AirLibGMProject.yyp",
+    "name":"ColisionManager",
+    "path":"folders/AirNetworking/ColisionManager.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

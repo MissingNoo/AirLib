@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"UI",
   "parent":{
-    "name":"AirLibGMProject",
-    "path":"AirLibGMProject.yyp",
+    "name":"AirLib",
+    "path":"folders/AirLib.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

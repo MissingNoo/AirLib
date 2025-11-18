@@ -92,7 +92,7 @@ function handle_data(c:Deno.Conn, data:any) {
       lastping: moment(moment.now()),
     };
     //let isRmanager = players.length == 0;
-    let isRmanager = rmanagerdata === undefined || !rmanagerdata.loggedIn;
+    let isRmanager = (rmanagerdata === undefined || !rmanagerdata.loggedIn) && use_colision_manager;
     players.push(p);
     redis.set("PlayerList", listPlayers().toString());
     sendMessage("uuid", { uuid: gen_uuid, rmanager: isRmanager }, p);

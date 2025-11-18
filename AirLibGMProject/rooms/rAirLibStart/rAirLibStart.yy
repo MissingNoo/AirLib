@@ -1,14 +1,14 @@
 {
   "$GMRoom":"v1",
-  "%Name":"Room1",
+  "%Name":"rAirLibStart",
   "creationCodeFile":"",
   "inheritCode":false,
   "inheritCreationOrder":false,
   "inheritLayers":false,
   "instanceCreationOrder":[
-    {"name":"inst_3EDDEC4C1","path":"rooms/Room1/Room1.yy",},
-    {"name":"inst_373F6E77_1","path":"rooms/Room1/Room1.yy",},
-    {"name":"inst_3C82B0D1","path":"rooms/Room1/Room1.yy",},
+    {"name":"inst_3EDDEC4C1","path":"rooms/rAirLibStart/rAirLibStart.yy",},
+    {"name":"inst_373F6E77_1","path":"rooms/rAirLibStart/rAirLibStart.yy",},
+    {"name":"inst_3C82B0D1","path":"rooms/rAirLibStart/rAirLibStart.yy",},
   ],
   "isDnd":false,
   "layers":[
@@ -19,10 +19,10 @@
       ],"layers":[],"name":"Instances","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
     {"$GMRBackgroundLayer":"","%Name":"Background","animationFPS":15.0,"animationSpeedType":0,"colour":4278190080,"depth":100,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"hspeed":0.0,"htiled":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"name":"Background","properties":[],"resourceType":"GMRBackgroundLayer","resourceVersion":"2.0","spriteId":null,"stretch":false,"userdefinedAnimFPS":false,"userdefinedDepth":false,"visible":true,"vspeed":0.0,"vtiled":false,"x":0,"y":0,},
   ],
-  "name":"Room1",
+  "name":"rAirLibStart",
   "parent":{
-    "name":"AirLibGMProject",
-    "path":"AirLibGMProject.yyp",
+    "name":"AirNetworking",
+    "path":"folders/AirNetworking.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

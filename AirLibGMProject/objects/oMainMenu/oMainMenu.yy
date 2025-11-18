@@ -11,8 +11,8 @@
   "name":"oMainMenu",
   "overriddenProperties":[],
   "parent":{
-    "name":"AirLibGMProject",
-    "path":"AirLibGMProject.yyp",
+    "name":"AirNetworking",
+    "path":"folders/AirNetworking.yy",
   },
   "parentObjectId":null,
   "persistent":false,

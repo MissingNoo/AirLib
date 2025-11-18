@@ -25,8 +25,8 @@
   "nineSlice":null,
   "origin":0,
   "parent":{
-    "name":"AirLibGMProject",
-    "path":"AirLibGMProject.yyp",
+    "name":"AirNetworking",
+    "path":"folders/AirNetworking.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",
