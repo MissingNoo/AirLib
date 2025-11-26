@@ -4,6 +4,8 @@
     {"name":"UIEditor","order":7,"path":"folders/AirLib/UIEditor.yy",},
     {"name":"AirNetworking","order":9,"path":"folders/AirNetworking.yy",},
     {"name":"ColisionManager","order":14,"path":"folders/AirNetworking/ColisionManager.yy",},
+    {"name":"Holohouse","order":24,"path":"folders/Holohouse.yy",},
+    {"name":"sprs","order":1,"path":"folders/Holohouse/sprs.yy",},
     {"name":"Libs","order":16,"path":"folders/Libs.yy",},
     {"name":"GMRoomLoader","order":3,"path":"folders/Libs/GMRoomLoader.yy",},
     {"name":"01. Public","order":1,"path":"folders/Libs/GMRoomLoader/01. Public.yy",},

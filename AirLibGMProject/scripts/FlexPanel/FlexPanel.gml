@@ -972,6 +972,15 @@ function airui_draw_sprite_centered(name, spr, pos, fit, scalediv = 1, alpha = 1
 }
 
 function airui_hotreload(uifile = "/tmp/export.ui", user_event = 0) {
+	if (is_undefined(self[$"md5_frame"])) {
+		md5_frame = 0;
+	}
+	if (is_undefined(self[$"current_md5"])) {
+		current_md5 = "";
+	}
+	if (is_undefined(self[$"last_md5"])) {
+		last_md5 = "";
+	}
 	self[$"md5_frame"] ??= "";
 	if (md5_frame < AirLib.frame) {
 		current_md5 = md5_file(uifile);

@@ -992,6 +992,11 @@ function ui_element_list() constructor {
 	};
 	
 	static select = function(num) {
+		if (num == "reset") {
+			selected = 0;
+			global.currentelement = list[0];
+			exit;
+		}
 		if (num == 0) {
 			exit;
 		}
