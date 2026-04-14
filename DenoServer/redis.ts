@@ -17,7 +17,6 @@ export const redis = await GlideClient.createClient({
 
 //export const redis = createClient({  url: Deno.env.get("redis") ?? "redis://localhost:6379",});
 try {
-  //await redis.connect();
 
   const set_response = await redis.set("foo", "bar");
   console.log("[Redis] Connected!");
