@@ -1,12 +1,12 @@
 {
   "$GMScript":"v1",
-  "%Name":"scr_tween",
+  "%Name":"Tween",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"scr_tween",
+  "name":"Tween",
   "parent":{
-    "name":"TweenLib",
-    "path":"folders/Libs/TweenLib.yy",
+    "name":"AirTween",
+    "path":"folders/AirLib/AirTween.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

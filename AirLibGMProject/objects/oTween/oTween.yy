@@ -1,16 +1,16 @@
 {
   "$GMObject":"",
-  "%Name":"obj_tween",
+  "%Name":"oTween",
   "eventList":[
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
-  "name":"obj_tween",
+  "name":"oTween",
   "overriddenProperties":[],
   "parent":{
-    "name":"TweenLib",
-    "path":"folders/Libs/TweenLib.yy",
+    "name":"AirTween",
+    "path":"folders/AirLib/AirTween.yy",
   },
   "parentObjectId":null,
   "persistent":true,

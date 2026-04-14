@@ -33,8 +33,8 @@
   "function":2,
   "name":"tween_curves",
   "parent":{
-    "name":"TweenLib",
-    "path":"folders/Libs/TweenLib.yy",
+    "name":"AirTween",
+    "path":"folders/AirLib/AirTween.yy",
   },
   "resourceType":"GMAnimCurve",
   "resourceVersion":"2.0",

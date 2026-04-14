@@ -21,7 +21,7 @@ if (keyboard_check_pressed(vk_f1)) {
 }
 if (keyboard_check_pressed(vk_f3)) {
 	//offset.lerp_to(offset.get_value() > 0 ? -1000 : 10)
-	tween(self, "offset", offset < 0 ? surface_get_height(infosurf) + 10 : -10);
+	new tween(self, "offset", offset < 0 ? surface_get_height(infosurf) + 10 : -10).run();
 }
 if (keyboard_check(vk_shift) && keyboard_check_pressed(ord("R"))) {
 	AirNet.connection.reconnect();
