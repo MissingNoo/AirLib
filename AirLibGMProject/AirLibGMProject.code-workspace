@@ -1,0 +1,99 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../DenoServer"
+		}
+	],
+	"settings": {
+		"editor.tokenColorCustomizations": {
+			"textMateRules": [
+				{
+					"scope": "keyword.control.gml",
+					"settings": {
+						"foreground": "#ff79c6",
+						"fontStyle": "bold"
+					}
+				},
+				{
+					"scope": [
+						"storage.type.gml",
+						"storage.modifier.gml",
+						"storage.type.class"
+					],
+					"settings": {
+						"foreground": "#8be9fd"
+					}
+				},
+				{
+					"scope": "storage.type.function.gml",
+					"settings": {
+						"foreground": "#8be9fd",
+						"fontStyle": "italic"
+					}
+				},
+				{
+					"scope": "constant.language.gml",
+					"settings": {
+						"foreground": "#bd93f9"
+					}
+				},
+				{
+					"scope": "string.quoted.double.gml",
+					"settings": {
+						"foreground": "#f1fa8c"
+					}
+				},
+				{
+					"scope": [
+						"comment.line.double-slash.gml",
+						"comment.line.triple-slash.gml",
+						"comment.block.gml"
+					],
+					"settings": {
+						"foreground": "#6272a4",
+						"fontStyle": "italic"
+					}
+				},
+				{
+					"scope": "constant.numeric",
+					"settings": {
+						"foreground": "#bd93f9"
+					}
+				},
+				{
+					"scope": "entity.name.function.gml",
+					"settings": {
+						"foreground": "#50fa7b",
+						"fontStyle": "bold"
+					}
+				},
+				{
+					"scope": "support.function.gml",
+					"settings": {
+						"foreground": "#50fa7b"
+					}
+				},
+				{
+					"scope": [
+						"keyword.operator.arithmetic.gml",
+						"keyword.operator.comparison.gml",
+						"keyword.operator.logical.gml",
+						"keyword.operator.assignment.gml",
+						"keyword.operator.bitwise.gml",
+						"keyword.operator.ternary.gml",
+						"keyword.operator.new.gml"
+					],
+					"settings": {
+						"foreground": "#ff79c6"
+					}
+				}
+			]
+		},
+		"workbench.colorCustomizations": {
+			"editor.background": "#282a36"
+		}
+	}
+}

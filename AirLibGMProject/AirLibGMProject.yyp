@@ -11,6 +11,7 @@
   "defaultScriptType":1,
   "Folders":[
     {"$GMFolder":"","%Name":"AirLib","folderPath":"folders/AirLib.yy","name":"AirLib","resourceType":"GMFolder","resourceVersion":"2.0",},
+    {"$GMFolder":"","%Name":"tween","folderPath":"folders/AirLib/tween.yy","name":"tween","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"UIEditor","folderPath":"folders/AirLib/UIEditor.yy","name":"UIEditor","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"AirNetworking","folderPath":"folders/AirNetworking.yy","name":"AirNetworking","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"ColisionManager","folderPath":"folders/AirNetworking/ColisionManager.yy","name":"ColisionManager","resourceType":"GMFolder","resourceVersion":"2.0",},
@@ -38,7 +39,6 @@
     {"$GMFolder":"","%Name":"Miscellaneous","folderPath":"folders/Libs/Scribble/Miscellaneous.yy","name":"Miscellaneous","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Quick Functions","folderPath":"folders/Libs/Scribble/Quick Functions.yy","name":"Quick Functions","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Superfonts","folderPath":"folders/Libs/Scribble/Superfonts.yy","name":"Superfonts","resourceType":"GMFolder","resourceVersion":"2.0",},
-    {"$GMFolder":"","%Name":"AirTween","folderPath":"folders/AirLib/AirTween.yy","name":"AirTween","resourceType":"GMFolder","resourceVersion":"2.0",},
   ],
   "ForcedPrefabProjectReferences":[
     {"link":"io.gamemaker.sdfshaders-1.0.0","name":"io.gamemaker.sdfshaders-1.0.0","path":"io.gamemaker.sdfshaders-1.0.0.yyp",},
@@ -77,7 +77,6 @@
     {"id":{"name":"oOtherPlayer","path":"objects/oOtherPlayer/oOtherPlayer.yy",},},
     {"id":{"name":"oTagManager","path":"objects/oTagManager/oTagManager.yy",},},
     {"id":{"name":"oTextManager","path":"objects/oTextManager/oTextManager.yy",},},
-    {"id":{"name":"oTween","path":"objects/oTween/oTween.yy",},},
     {"id":{"name":"oUI","path":"objects/oUI/oUI.yy",},},
     {"id":{"name":"oUIElement","path":"objects/oUIElement/oUIElement.yy",},},
     {"id":{"name":"R2","path":"rooms/R2/R2.yy",},},

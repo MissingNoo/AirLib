@@ -1,6 +1,7 @@
 {
   "FolderOrderSettings":[
     {"name":"AirLib","order":5,"path":"folders/AirLib.yy",},
+    {"name":"tween","order":16,"path":"folders/AirLib/tween.yy",},
     {"name":"UIEditor","order":7,"path":"folders/AirLib/UIEditor.yy",},
     {"name":"AirNetworking","order":9,"path":"folders/AirNetworking.yy",},
     {"name":"ColisionManager","order":14,"path":"folders/AirNetworking/ColisionManager.yy",},
@@ -27,7 +28,6 @@
     {"name":"Miscellaneous","order":7,"path":"folders/Libs/Scribble/Miscellaneous.yy",},
     {"name":"Quick Functions","order":8,"path":"folders/Libs/Scribble/Quick Functions.yy",},
     {"name":"Superfonts","order":9,"path":"folders/Libs/Scribble/Superfonts.yy",},
-    {"name":"AirTween","order":16,"path":"folders/AirLib/AirTween.yy",},
   ],
   "ResourceOrderSettings":[
     {"name":"tween_curves","order":1,"path":"animcurves/tween_curves/tween_curves.yy",},

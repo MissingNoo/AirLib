@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"Tween",
   "parent":{
-    "name":"AirTween",
-    "path":"folders/AirLib/AirTween.yy",
+    "name":"tween",
+    "path":"folders/AirLib/tween.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",
