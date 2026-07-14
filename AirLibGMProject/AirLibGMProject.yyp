@@ -50,7 +50,7 @@
   "isEcma":false,
   "LibraryEmitters":[],
   "MetaData":{
-    "IDEVersion":"2024.1400.5.1043",
+    "IDEVersion":"2026.0.0.16",
   },
   "name":"AirLibGMProject",
   "resources":[
@@ -69,6 +69,7 @@
     {"id":{"name":"oEditableUI","path":"objects/oEditableUI/oEditableUI.yy",},},
     {"id":{"name":"oFriendList","path":"objects/oFriendList/oFriendList.yy",},},
     {"id":{"name":"oFriendRequest","path":"objects/oFriendRequest/oFriendRequest.yy",},},
+    {"id":{"name":"oInimiho","path":"objects/oInimiho/oInimiho.yy",},},
     {"id":{"name":"oJoin","path":"objects/oJoin/oJoin.yy",},},
     {"id":{"name":"oLoadUI","path":"objects/oLoadUI/oLoadUI.yy",},},
     {"id":{"name":"oLogin","path":"objects/oLogin/oLogin.yy",},},
@@ -232,12 +233,13 @@
     {"id":{"name":"sInput","path":"sprites/sInput/sInput.yy",},},
     {"id":{"name":"sOtherPlayer","path":"sprites/sOtherPlayer/sOtherPlayer.yy",},},
     {"id":{"name":"Sprite14","path":"sprites/Sprite14/Sprite14.yy",},},
+    {"id":{"name":"Sprite15","path":"sprites/Sprite15/Sprite15.yy",},},
   ],
   "resourceType":"GMProject",
   "resourceVersion":"2.0",
   "RoomOrderNodes":[
-    {"roomId":{"name":"rAirLibStart","path":"rooms/rAirLibStart/rAirLibStart.yy",},},
     {"roomId":{"name":"rUIEditor","path":"rooms/rUIEditor/rUIEditor.yy",},},
+    {"roomId":{"name":"rAirLibStart","path":"rooms/rAirLibStart/rAirLibStart.yy",},},
     {"roomId":{"name":"rColTest","path":"rooms/rColTest/rColTest.yy",},},
     {"roomId":{"name":"R2","path":"rooms/R2/R2.yy",},},
     {"roomId":{"name":"R3","path":"rooms/R3/R3.yy",},},

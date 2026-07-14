@@ -1,6 +1,5 @@
 //feather ignore all
-/// @description Insert description here
-// You can write your code in this editor
+show_debug_overlay(false);
 if (keyboard_check_released(vk_insert)) {
 	ui.edit_mode();
 }

@@ -1,3 +1,4 @@
+window_set_fullscreen(true);
 //window_set_size(window_get_width() / 2, window_get_height() / 2);
 scribble_font_set_default("Font3");
 offset = -1000; //new lerper(-1000);

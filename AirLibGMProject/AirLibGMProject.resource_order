@@ -43,6 +43,7 @@
     {"name":"oEditableUI","order":6,"path":"objects/oEditableUI/oEditableUI.yy",},
     {"name":"oFriendList","order":8,"path":"objects/oFriendList/oFriendList.yy",},
     {"name":"oFriendRequest","order":10,"path":"objects/oFriendRequest/oFriendRequest.yy",},
+    {"name":"oInimiho","order":24,"path":"objects/oInimiho/oInimiho.yy",},
     {"name":"oJoin","order":5,"path":"objects/oJoin/oJoin.yy",},
     {"name":"oLoadUI","order":10,"path":"objects/oLoadUI/oLoadUI.yy",},
     {"name":"oLogin","order":6,"path":"objects/oLogin/oLogin.yy",},
@@ -185,5 +186,6 @@
     {"name":"sInput","order":4,"path":"sprites/sInput/sInput.yy",},
     {"name":"sOtherPlayer","order":2,"path":"sprites/sOtherPlayer/sOtherPlayer.yy",},
     {"name":"Sprite14","order":11,"path":"sprites/Sprite14/Sprite14.yy",},
+    {"name":"Sprite15","order":25,"path":"sprites/Sprite15/Sprite15.yy",},
   ],
 }

@@ -1,5 +1,5 @@
 #macro AirLib global.__air
-#macro AirLibDefaultStyle AirLibBtnStyle.Rounded //Default, Rounded, Flat
+#macro AirLibDefaultStyle AirLibBtnStyle.Default //Default, Rounded, Flat
 #macro AirLibDefaultBGSprite sAirBG
 #macro AirLibDefaultTextBoxSprite sAirBG
 #macro AirLibDefaultListSprite sAirBG

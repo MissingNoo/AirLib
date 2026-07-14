@@ -23,6 +23,12 @@ clearstr = function(struct) {
 	if (array_contains(names, "instances")) {
 		struct_remove(struct, "instances");
 	}
+	if (array_contains(names, "ostruct")) {
+		struct_remove(struct, "ostruct");
+	}
+	if (array_contains(names, "bstruct")) {
+		struct_remove(struct, "bstruct");
+	}
 	if (struct_exists(struct.data, "owner")) {
 		struct_remove(struct.data, "owner");
 	}
@@ -36,10 +42,13 @@ clearstr = function(struct) {
 	}
 };
 
-save = function(name = "test") {
+save = function(name = "testar") {
 	var f = file_text_open_write(name);
 	var str = variable_clone(flexpanel_node_get_struct(ui.root));
 	clearstr(str);
+	file_text_write_string(f, json_stringify(str, true));
+	file_text_close(f);
+    f = file_text_open_write("/tmp/export.ui");
 	file_text_write_string(f, json_stringify(str, true));
 	file_text_close(f);
 };
@@ -49,7 +58,8 @@ load = function() {
 	ui = new window(
 		json_parse(
 			buffer_read(
-				buffer_load(global.filename),
+				//buffer_load(global.filename),
+                buffer_load("/tmp/export.ui"),
 				buffer_text
 			)
 		),

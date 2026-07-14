@@ -36,8 +36,9 @@ if (oUI.editing != undefined && name == oUI.editing) {
 		&& mouse_in_area_gui([x, y, x + width, y + height])
 		&& deltimer == 0
 	) {
+        global.__air.last_ele = ele;
 		deltimer = 60;
-		delete_el(ele);
+		delete_el(global.__air.last_ele);
 	}
 	if (
 		device_mouse_check_button_pressed(0, mb_right) 
