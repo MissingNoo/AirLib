@@ -26,16 +26,13 @@ function flexpanel_draw_tags(name, pos, data) {
 
 function draw_bg_fg(pos = {}, element = {type: undefined, tags: []}) {
 	var spr = sBlank;
-	var color = c_white;
 	var check = "on_area";
 	switch (element.type) {
 		case "button":
 			spr = AirLibDefaultButtonSprite;
-			color = AirLibButtonBG;
 			break;
 		case "textbox":
 			spr = AirLibDefaultTextBoxSprite;
-			color = AirLibInputBG;
 			break;
 		case "checkbox":
 			spr = AirLibDefaultCheckboxSprite;
@@ -49,63 +46,30 @@ function draw_bg_fg(pos = {}, element = {type: undefined, tags: []}) {
 			break;
 		case "listbox":
 			spr = AirLibDefaultListSprite;
-			color = AirLibListBG;
 			break;
 		default:
 			if (array_contains(element.tags, "button")) {
 				spr = AirLibDefaultButtonSprite;
-				color = AirLibButtonBG;
 			}
 			if (array_contains(element.tags, "input")) {
 				spr = AirLibDefaultTextBoxSprite;
-				color = AirLibInputBG;
 			}
 			if (array_contains(element.tags, "bg")) {
 				spr = AirLibDefaultBGSprite;
-				color = AirLibBG;
 			}
 			if (array_contains(element.tags, "fg")) {
 				spr = AirLibDefaultFGSprite;
-				color = AirLibFG;
 			}
 			break;
 	}
-	switch (AirLibDefaultStyle) {
-		case AirLibBtnStyle.Default:
-			draw_sprite_stretched(
-				spr,
-				element[$ check] ?? 0,
-				pos.left,
-				pos.top,
-				pos.width,
-				pos.height
-			);
-			break;
-		case AirLibBtnStyle.Flat:
-			draw_set_color(color);
-			draw_rectangle(
-				pos.left,
-				pos.top,
-				pos.left + pos.width,
-				pos.top + pos.height,
-				false
-			);
-			draw_set_color(c_white);
-			break;
-		case AirLibBtnStyle.Rounded:
-			draw_set_color(color);
-			draw_roundrect_ext(
-				pos.left,
-				pos.top,
-				pos.left + pos.width,
-				pos.top + pos.height,
-				AirLibRoundX,
-				AirLibRoundY,
-				false
-			);
-			draw_set_color(c_white);
-			break;
-	}
+    draw_sprite_stretched(
+        spr,
+        element[$ check] ?? 0,
+        pos.left,
+        pos.top,
+        pos.width,
+        pos.height
+    );
 }
 
 function window(struct, _generate = false) constructor {

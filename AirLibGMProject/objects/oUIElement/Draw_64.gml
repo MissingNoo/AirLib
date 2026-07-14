@@ -76,8 +76,10 @@ try {
 	}
 	
     if (string_contains(name, "spacer")) {
+        draw_set_alpha(0.2);
     	draw_sprite_stretched(sHSpacer, 0, x, y + height / 2 - 8, width, 16);
     	draw_sprite_stretched(sVSpacer, 0, x + width / 2 - 8, y, 16, height);
+        draw_set_alpha(1);
     }
     
 	// Draw text, can optionally be centred

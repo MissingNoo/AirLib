@@ -67,5 +67,5 @@ load = function() {
 	);
 	ui.edit_mode(true);
 };
-
+oUI.add_to_list();
 depth = depth + 1;

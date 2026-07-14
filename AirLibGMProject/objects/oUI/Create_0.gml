@@ -215,22 +215,6 @@ top = {
 	"width": 1920.0,
 	"data": {
 		image: sButton,
-		"owner": {
-			"target_w": 1920.0,
-			"target_h": 1080.0,
-			"editing": false,
-			"instances": [
-				"@ref instance(100085)",
-				"@ref instance(100086)",
-				"@ref instance(100087)",
-				"@ref instance(100088)",
-				"@ref instance(100089)"
-			],
-			"root": "@ref flexpanel(82)",
-			"ownername": "base",
-			"lastdepth": 0.0,
-		},
-		"inst": "@ref instance(100085)",
 	},
 	"height": 35.0,
 	"name": "base",
@@ -245,7 +229,7 @@ top = {
 					"data": {
 						text: "Save",
 						f: function() {
-                            oEditableUI.ui.edit_mode(false);
+                            //oEditableUI.ui.edit_mode(false);
                             if (!instance_exists(oSaveUI)) {
                             	instance_create_depth(0, 0, -3000, oSaveUI);
                             }
@@ -259,7 +243,7 @@ top = {
 					"data": {
 						text: "Save as",
 						f: function() {
-                            oEditableUI.ui.edit_mode(false);
+                            //oEditableUI.ui.edit_mode(false);
 							oUI.saveasui = new window(oUI.saveas, true);
 							oUI.saveasui.startingdepth = -1000;
 							oUI.saveasui.dispose();
@@ -572,9 +556,17 @@ flexpanel_node_insert_child(
 ui.recalculate();
 
 get_children = function(list, node) {
-	list[$ flexpanel_node_get_name(node)] = {};
+	//list[$ flexpanel_node_get_name(node)] = {};
 	var childs = flexpanel_node_get_num_children(node);
-	if (childs > 0) {
+    for (var i = 0; i < childs; i++) {
+    	var n = flexpanel_node_get_child(node, i);
+        var name = flexpanel_node_get_name(n)
+        if (!array_contains(list, name)) {
+        	array_push(list, name);
+        } 
+        get_children(list, n);
+    }
+	/*if (childs > 0) {
 		var l = list[$ flexpanel_node_get_name(node)];
 		if (string_contains(flexpanel_node_get_name(node), "panel")) {
 			l[$ "childs"] = [];
@@ -590,7 +582,7 @@ get_children = function(list, node) {
 				}
 			}
 		}
-	}
+	}*/
 	//var _add = {
 	//    "margin":5.0,
 	//    "name":$"panel_parent_{flexpanel_node_get_name(node)}",
@@ -670,23 +662,26 @@ add_to_list = function() {
 	//for (var i = 0; i < flexpanel_node_get_num_children(node); ++i) {
 	//    flexpanel_node_insert_child(flexpanel_node_get_child(ui.root, "panel_list_base"), get_children(flexpanel_node_get_child(node, i)), 0);
 	//}
-	var list = {};
+	//var list = {};
+	var list = [];
 	for (var i = 0; i < flexpanel_node_get_num_children(node); ++i) {
 		get_children(list, node);
 		//flexpanel_node_insert_child(flexpanel_node_get_child(ui.root, "panel_list_base"), get_children(flexpanel_node_get_child(node, i)), 0);
 	}
 	var s = json_stringify(list);
-	s = string_replace_all(s, "{", "");
-	s = string_replace_all(s, "}", "");
-	s = string_replace_all(s, "[", "");
-	s = string_replace_all(s, "]", ":");
+	//s = string_replace_all(s, "{", "");
+	//s = string_replace_all(s, "}", "");
+	//s = string_replace_all(s, "[", "");
+	//s = string_replace_all(s, "]", ":");
 	s = string_replace_all(s, "\"", "");
-	s = string_replace_all(s, ",", ":");
-	s = string_replace_all(s, "childs", "");
-	s = string_replace_all(s, " ", "");
-	var a = string_split(s, ":", true);
-	//show_message(a);
+	//s = string_replace_all(s, ",", ":");
+	//s = string_replace_all(s, "childs", "");
+	//s = string_replace_all(s, " ", "");
+	var a = string_split(s, ",", true);
 	var _add = function(e, i) {
+        if ((string_contains(e, "grid") or string_contains(e, "spacer") or string_contains(e, "top_panel") or string_contains(e, "middle_panel") or string_contains(e, "bottom_panel")) and !keyboard_check(ord("Z"))) {
+        	return;
+        }
 		flexpanel_node_insert_child(
 			oUI.ui.get_child("panel_list_base"),
 			flexpanel_create_node({

@@ -102,3 +102,4 @@ ui = new window(save, true);
 //ui.add_element("button_save_ok", accept);
 //ui.fit_to_gui();
 //ui.finish();
+depth = -10000;
