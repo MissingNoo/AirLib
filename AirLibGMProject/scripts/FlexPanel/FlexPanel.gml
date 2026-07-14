@@ -5,6 +5,7 @@
 #macro AirUIFunctionStart method(self, function(name, pos, data) { var _x = pos.left, _y = pos.top, _w = pos.width, _h = pos.height, area = [_x, _y, _x + _w, _y + _h] if (!is_undefined(data[$ "tags"])) { flexpanel_draw_tags(name, pos, data) }
 #macro AirUIFunctionEnd })
 #macro AirUIDefaultDraw AirUIFunctionStart AirUIDrawDefaultSpr AirUIFunctionEnd
+#macro AirUIDebugDraw ui.foreach(function (name, pos, data) {draw_rectangle(pos.left, pos.top, pos.left + pos.width, pos.top + pos.height, true);})
 global.edit_mode = false;
 global.edit_node = undefined;
 global.edit_node_owner = undefined;

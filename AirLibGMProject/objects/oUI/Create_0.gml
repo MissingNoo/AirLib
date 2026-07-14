@@ -10,283 +10,7 @@ editing = noone;
 last_edit = noone;
 editingdepth = 999999;
 saveui = undefined;
-save = {
-	"name": "base",
-	"nodes": [
-		{
-			"name": "panel_base",
-			"left": 0.0,
-			"nodes": [
-				{
-					"flex": 0.10000000149011612,
-					"data": {
-						text: "Save",
-						"owner": {
-							"target_w": 1920.0,
-							"target_h": 1080.0,
-							"editing": false,
-							"instances": [
-								"@ref instance(100129)",
-								"@ref instance(100130)",
-								"@ref instance(100131)",
-								"@ref instance(100132)",
-								"@ref instance(100133)",
-								"@ref instance(100134)",
-								"@ref instance(100135)",
-								"@ref instance(100136)",
-								"@ref instance(100142)"
-							],
-							"root": "@ref flexpanel(654)",
-							"ownername": "base",
-							"lastdepth": 0.0,
-						},
-						"inst": "@ref instance(100131)",
-					},
-					"name": "label_center_62297",
-				},
-				{
-					"margin": 10.0,
-					"border": 0.0,
-					"name": "transparent_panel_55029",
-					"nodes": [
-						{
-							"name": "panel_82435",
-							"nodes": [
-								{
-									"flex": 1.0,
-									"data": {
-										text: "Are you sure?",
-										"owner": {
-											"target_w": 1920.0,
-											"target_h": 1080.0,
-											"editing": false,
-											"instances": [
-												"@ref instance(100129)",
-												"@ref instance(100130)",
-												"@ref instance(100131)",
-												"@ref instance(100132)",
-												"@ref instance(100133)",
-												"@ref instance(100134)",
-												"@ref instance(100135)",
-												"@ref instance(100136)",
-												"@ref instance(100142)"
-											],
-											"root": "@ref flexpanel(654)",
-											"ownername": "base",
-											"lastdepth": 0.0,
-										},
-										"inst": "@ref instance(100142)",
-									},
-									"name": "center_label_98113",
-								}
-							],
-							"flex": 1.0,
-							"padding": 10.0,
-							"data": {
-								"owner": {
-									"target_w": 1920.0,
-									"target_h": 1080.0,
-									"editing": false,
-									"instances": [
-										"@ref instance(100129)",
-										"@ref instance(100130)",
-										"@ref instance(100131)",
-										"@ref instance(100132)",
-										"@ref instance(100133)",
-										"@ref instance(100134)",
-										"@ref instance(100135)",
-										"@ref instance(100136)",
-										"@ref instance(100142)"
-									],
-									"root": "@ref flexpanel(654)",
-									"ownername": "base",
-									"lastdepth": 0.0,
-								},
-								"inst": "@ref instance(100133)",
-							},
-							"height": 60.0,
-						},
-						{
-							"alignSelf": "center",
-							"flexDirection": "row",
-							"name": "transparent_panel_28819",
-							"nodes": [
-								{
-									"flex": 1.0,
-									"width": 60.0,
-									"data": {
-										text: "Yes",
-										f: function() {
-											oEditableUI.save(global.filename);
-											oUI.saveui.dispose();
-										},
-										"owner": {
-											"target_w": 1920.0,
-											"target_h": 1080.0,
-											"editing": false,
-											"instances": [
-												"@ref instance(100129)",
-												"@ref instance(100130)",
-												"@ref instance(100131)",
-												"@ref instance(100132)",
-												"@ref instance(100133)",
-												"@ref instance(100134)",
-												"@ref instance(100135)",
-												"@ref instance(100136)",
-												"@ref instance(100142)"
-											],
-											"root": "@ref flexpanel(654)",
-											"ownername": "base",
-											"lastdepth": 0.0,
-										},
-										"inst": "@ref instance(100135)",
-									},
-									"height": 30.0,
-									"name": "button_save_ok",
-								},
-								{
-									"flex": 1.0,
-									"width": 192.0,
-									"data": {
-										text: "Cancel",
-										f: function() {
-											oUI.saveui.dispose();
-										},
-										"owner": {
-											"target_w": 1920.0,
-											"target_h": 1080.0,
-											"editing": false,
-											"instances": [
-												"@ref instance(100129)",
-												"@ref instance(100130)",
-												"@ref instance(100131)",
-												"@ref instance(100132)",
-												"@ref instance(100133)",
-												"@ref instance(100134)",
-												"@ref instance(100135)",
-												"@ref instance(100136)",
-												"@ref instance(100142)"
-											],
-											"root": "@ref flexpanel(654)",
-											"ownername": "base",
-											"lastdepth": 0.0,
-										},
-										"inst": "@ref instance(100136)",
-									},
-									"height": 30.0,
-									"name": "button_save_cancel",
-								}
-							],
-							"flex": 0.20000000298023224,
-							"padding": 10.0,
-							"width": 200.0,
-							"data": {
-								"owner": {
-									"target_w": 1920.0,
-									"target_h": 1080.0,
-									"editing": false,
-									"instances": [
-										"@ref instance(100129)",
-										"@ref instance(100130)",
-										"@ref instance(100131)",
-										"@ref instance(100132)",
-										"@ref instance(100133)",
-										"@ref instance(100134)",
-										"@ref instance(100135)",
-										"@ref instance(100136)",
-										"@ref instance(100142)"
-									],
-									"root": "@ref flexpanel(654)",
-									"ownername": "base",
-									"lastdepth": 0.0,
-								},
-								"inst": "@ref instance(100134)",
-							},
-							"height": 60.0,
-							"alignItems": "center",
-						}
-					],
-					"flex": 1.0,
-					"padding": 0.0,
-					"data": {
-						"owner": {
-							"target_w": 1920.0,
-							"target_h": 1080.0,
-							"editing": false,
-							"instances": [
-								"@ref instance(100129)",
-								"@ref instance(100130)",
-								"@ref instance(100131)",
-								"@ref instance(100132)",
-								"@ref instance(100133)",
-								"@ref instance(100134)",
-								"@ref instance(100135)",
-								"@ref instance(100136)",
-								"@ref instance(100142)"
-							],
-							"root": "@ref flexpanel(654)",
-							"ownername": "base",
-							"lastdepth": 0.0,
-						},
-						"inst": "@ref instance(100132)",
-					},
-					"height": 304.0,
-				}
-			],
-			"padding": 0.0,
-			"top": 500.0,
-			"width": 249.0,
-			"data": {
-				"inst": "@ref instance(100130)",
-				"owner": {
-					"target_w": 1920.0,
-					"target_h": 1080.0,
-					"editing": false,
-					"instances": [
-						"@ref instance(100129)",
-						"@ref instance(100130)",
-						"@ref instance(100131)",
-						"@ref instance(100132)",
-						"@ref instance(100133)",
-						"@ref instance(100134)",
-						"@ref instance(100135)",
-						"@ref instance(100136)",
-						"@ref instance(100142)"
-					],
-					"root": "@ref flexpanel(654)",
-					"ownername": "base",
-					"lastdepth": 0.0,
-				},
-			},
-			"height": 127.0,
-		}
-	],
-	"width": 1920.0,
-	"data": {
-		"owner": {
-			"target_w": 1920.0,
-			"target_h": 1080.0,
-			"editing": false,
-			"instances": [
-				"@ref instance(100129)",
-				"@ref instance(100130)",
-				"@ref instance(100131)",
-				"@ref instance(100132)",
-				"@ref instance(100133)",
-				"@ref instance(100134)",
-				"@ref instance(100135)",
-				"@ref instance(100136)",
-				"@ref instance(100142)"
-			],
-			"root": "@ref flexpanel(654)",
-			"ownername": "base",
-			"lastdepth": 0.0,
-		},
-		"inst": "@ref instance(100129)",
-	},
-	"height": 1080.0,
-	"alignItems": "center",
-};
+
 
 saveas = {
 	"nodes": [
@@ -521,7 +245,11 @@ top = {
 					"data": {
 						text: "Save",
 						f: function() {
-							oUI.saveui = new window(oUI.save, true);
+                            oEditableUI.ui.edit_mode(false);
+                            if (!instance_exists(oSaveUI)) {
+                            	instance_create_depth(0, 0, -3000, oSaveUI);
+                            }
+							//oUI.saveui = new window(oUI.save, true);
 						},
 					},
 					"name": "button_save",
@@ -531,6 +259,7 @@ top = {
 					"data": {
 						text: "Save as",
 						f: function() {
+                            oEditableUI.ui.edit_mode(false);
 							oUI.saveasui = new window(oUI.saveas, true);
 							oUI.saveasui.startingdepth = -1000;
 							oUI.saveasui.dispose();
@@ -807,6 +536,7 @@ load_info = function(n) {
 		var editnodestruct = flexpanel_node_get_struct(editnode);
 		var onode = flexpanel_node_get_struct(_node);
 		editnodestruct.data.selected = onode[$ o[0]];
+        editnodestruct.margin = 1;
 		var parent = flexpanel_node_get_parent(editnode);
 		flexpanel_node_remove_child(parent, editnode);
 		flexpanel_node_insert_child(parent, flexpanel_create_node(editnodestruct), 1);

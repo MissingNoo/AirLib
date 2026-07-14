@@ -7,7 +7,7 @@ try {
 	if (draw_back) {
 		switch (AirLibDefaultStyle) {
 			case AirLibBtnStyle.Default:
-				draw_sprite_stretched(sButton, 1, x, y, width, height);
+				draw_sprite_stretched(sAirBG, 1, x, y, width, height);
 				break;
 			case AirLibBtnStyle.Flat:
 				draw_set_color(AirLibBG);
@@ -32,10 +32,10 @@ try {
 	
 	// Draw image (e.g. an icon)
 	if (image != -1) {
-		if (image == sButton) {
+		if (image == sAirBG) {
 			switch (AirLibDefaultStyle) {
 				case AirLibBtnStyle.Default:
-					draw_sprite_stretched(sButton, 1, x, y, width, height);
+					draw_sprite_stretched(sAirBG, 1, x, y, width, height);
 					break;
 				case AirLibBtnStyle.Flat:
 					draw_set_color(AirLibBG);
@@ -75,6 +75,11 @@ try {
 		);
 	}
 	
+    if (string_contains(name, "spacer")) {
+    	draw_sprite_stretched(sHSpacer, 0, x, y + height / 2 - 8, width, 16);
+    	draw_sprite_stretched(sVSpacer, 0, x + width / 2 - 8, y, 16, height);
+    }
+    
 	// Draw text, can optionally be centred
 	if (text != "" && element == undefined) {
 		//if (center_text) {
@@ -298,7 +303,7 @@ try {
 					x + (width / 2),
 					y + (height / 2)
 				);
-			} else if (type != "panel") {
+			} else if (type != "panel" and !string_contains(name, "spacer")) {
 				scribble($"{_color}[fa_center][fa_middle]{name}").draw(
 					x + (width / 2),
 					y + (height / 2)

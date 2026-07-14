@@ -487,6 +487,7 @@ function button(_text) constructor {
 		}
 		return self;
 	};
+    
 	static draw = function() {
 		if (area[0] == area[2]) {
 			exit;
@@ -548,9 +549,9 @@ function button(_text) constructor {
 			custom_draw();
 		}
 
-		var color = "c_white";
+		var color = "c_gray";
 		if (held) {
-			color = "c_black";
+			color = "c_gray";
 		}
 		//draw_sprite_stretched(sprite, held, area[0], area[1], area[2] - area[0], area[3] - area[1]);
 		var alpha = enabled ? 1 : 0.5;
@@ -694,7 +695,7 @@ function listbox() constructor {
 					openarea[3] = _y;
 				}
 			}
-			openarea[3] = _y + 50;
+			openarea[3] = _y + 32;
 			gpu_set_depth(self.ldepth);
 		}
 		return self;
