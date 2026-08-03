@@ -230,7 +230,7 @@ top = {
 						text: "Export",
 						f: function() {
 							oEditableUI.save("/home/airgeadlamh/export.ui");
-							global.loader = "ui = new window(\"/home/airgeadlamh/export.ui\")\nui.fit_to_gui();\n";
+							global.loader = "ui = new window(json_parse(json_stringify(json_load(\"/home/airgeadlamh/export.ui\"))));\nui.fit_to_gui();\n";
 							global.draw = "";
 							var temp = new window(flexpanel_node_get_struct(variable_clone(oEditableUI.ui.root)));
 							temp.foreach(function (_name, _pos, _data) {
