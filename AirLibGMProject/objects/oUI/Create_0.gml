@@ -227,6 +227,41 @@ top = {
 				{
 					"width": 60.0,
 					"data": {
+						text: "Export",
+						f: function() {
+							oEditableUI.save("/home/airgeadlamh/export.ui");
+							global.loader = "ui = new window(\"/home/airgeadlamh/export.ui\")\nui.fit_to_gui();\n";
+							global.draw = "";
+							var temp = new window(flexpanel_node_get_struct(variable_clone(oEditableUI.ui.root)));
+							temp.foreach(function (_name, _pos, _data) {
+								if (struct_exists(_data, "tags")) {
+									var _tags = _data[$"tags"];
+									if (array_contains(_tags, "button")) {
+										global.loader += $"{_name} = new button(\"{_data.text}\");\n{_name}.set_function(method(self, function() \{\n\n}));\nui.add_element(\"{_name}\", {_name});\n";
+									}
+									if (array_contains(_tags, "listbox")) {
+										global.loader += $"{_name} = new listbox();\n{_name}.add_item(\"example\");\nui.add_element(\"{_name}\", {_name});\n";
+									}
+									if (array_contains(_tags, "input")) {
+										global.loader += $"{_name} = new textbox();\n{_name}.backtext = \"{_data.text}\";\nui.add_element(\"{_name}\", {_name});\n";
+									}
+									if (array_contains(_tags, "checkbox")) {
+										a = new checkbox();
+										global.loader += $"{_name} = new checkbox();\n{_name}.set_on_change(method(self, function(_bool) \{\n\n}));\nui.add_element(\"{_name}\", {_name});\n";
+									}
+								}
+							});
+							global.loader += "ui.finish();";
+							var _s = file_text_open_write("/home/airgeadlamh/create.gml");
+							file_text_write_string(_s, global.loader);
+							file_text_close(_s);
+						},
+					},
+					"name": "button_export",
+				},
+				{
+					"width": 60.0,
+					"data": {
 						text: "Save",
 						f: function() {
                             //oEditableUI.ui.edit_mode(false);

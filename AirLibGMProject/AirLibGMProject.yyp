@@ -51,7 +51,7 @@
   "isEcma":false,
   "LibraryEmitters":[],
   "MetaData":{
-    "IDEVersion":"2026.0.0.16",
+    "IDEVersion":"2026.100.0.1110",
   },
   "name":"AirLibGMProject",
   "resources":[
@@ -61,6 +61,7 @@
     {"id":{"name":"scribble_fallback_font","path":"fonts/scribble_fallback_font/scribble_fallback_font.yy",},},
     {"id":{"name":"RoomLoaderInfo","path":"notes/RoomLoaderInfo/RoomLoaderInfo.yy",},},
     {"id":{"name":"AirUIController","path":"objects/AirUIController/AirUIController.yy",},},
+    {"id":{"name":"Object23","path":"objects/Object23/Object23.yy",},},
     {"id":{"name":"oChat","path":"objects/oChat/oChat.yy",},},
     {"id":{"name":"oClient","path":"objects/oClient/oClient.yy",},},
     {"id":{"name":"oCol","path":"objects/oCol/oCol.yy",},},
@@ -84,6 +85,7 @@
     {"id":{"name":"oUIElement","path":"objects/oUIElement/oUIElement.yy",},},
     {"id":{"name":"R2","path":"rooms/R2/R2.yy",},},
     {"id":{"name":"R3","path":"rooms/R3/R3.yy",},},
+    {"id":{"name":"rAirLibStart_1","path":"rooms/rAirLibStart_1/rAirLibStart_1.yy",},},
     {"id":{"name":"rAirLibStart","path":"rooms/rAirLibStart/rAirLibStart.yy",},},
     {"id":{"name":"rColTest","path":"rooms/rColTest/rColTest.yy",},},
     {"id":{"name":"rUIEditor","path":"rooms/rUIEditor/rUIEditor.yy",},},
@@ -245,6 +247,7 @@
   "resourceType":"GMProject",
   "resourceVersion":"2.0",
   "RoomOrderNodes":[
+    {"roomId":{"name":"rAirLibStart_1","path":"rooms/rAirLibStart_1/rAirLibStart_1.yy",},},
     {"roomId":{"name":"rUIEditor","path":"rooms/rUIEditor/rUIEditor.yy",},},
     {"roomId":{"name":"rAirLibStart","path":"rooms/rAirLibStart/rAirLibStart.yy",},},
     {"roomId":{"name":"rColTest","path":"rooms/rColTest/rColTest.yy",},},

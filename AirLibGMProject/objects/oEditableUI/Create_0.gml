@@ -32,6 +32,9 @@ clearstr = function(struct) {
 	if (struct_exists(struct.data, "owner")) {
 		struct_remove(struct.data, "owner");
 	}
+	if (struct_exists(struct.data, "added")) {
+		struct_remove(struct.data, "added");
+	}
 	if (struct_exists(struct.data, "inst")) {
 		struct_remove(struct.data, "inst");
 	}
