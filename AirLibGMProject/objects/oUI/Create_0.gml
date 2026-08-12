@@ -2,7 +2,7 @@
 vis = true;
 AirLib.ui_editor_order = [];
 display_set_gui_size(1920, 1080);
-global.filename = "/home/airgeadlamh/export.ui";
+global.filename = AirUISavePath;
 depth = -2000;
 up = false;
 down = false;
@@ -229,14 +229,17 @@ top = {
 					"data": {
 						text: "Export",
 						f: function() {
-							oEditableUI.save("/home/airgeadlamh/export.ui");
-							global.loader = "ui = new window(json_parse(json_stringify(json_load(\"/home/airgeadlamh/export.ui\"))));\nui.fit_to_gui();\n";
+							oEditableUI.save(AirUISavePath);
+							global.loader = $"ui = new window(json_parse(json_stringify(json_load(\"{AirUISavePath}\"))));\nui.fit_to_gui();\n";
 							global.draw = "";
 							var temp = new window(flexpanel_node_get_struct(variable_clone(oEditableUI.ui.root)));
 							temp.foreach(function (_name, _pos, _data) {
 								if (struct_exists(_data, "tags")) {
 									var _tags = _data[$"tags"];
 									if (array_contains(_tags, "button")) {
+										if (is_undefined(_data[$"text"])) {
+											_data.text = undefined;
+										}
 										global.loader += $"{_name} = new button(\"{_data.text}\");\n{_name}.set_function(method(self, function() \{\n\n}));\nui.add_element(\"{_name}\", {_name});\n";
 									}
 									if (array_contains(_tags, "listbox")) {
@@ -252,7 +255,7 @@ top = {
 								}
 							});
 							global.loader += "ui.finish();";
-							var _s = file_text_open_write("/home/airgeadlamh/create.gml");
+							var _s = file_text_open_write($"{AirUISavePath}_create.gml");
 							file_text_write_string(_s, global.loader);
 							file_text_close(_s);
 						},

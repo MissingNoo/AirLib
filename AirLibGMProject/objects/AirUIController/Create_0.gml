@@ -5,3 +5,6 @@ if (instance_number(AirUIController) > 1) {
 }
 scribble_font_set_default("Fnt");
 AirLib = {frame: 0, listframe: 0, waitframe: 0, lib_uis: {}, lerpers: [], tweens : []};
+if (os_get_config() == "EDITOR" and room != rUIEditor) {
+	room_goto(rUIEditor);
+}

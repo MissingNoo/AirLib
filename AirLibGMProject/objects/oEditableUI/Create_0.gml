@@ -45,13 +45,13 @@ clearstr = function(struct) {
 	}
 };
 
-save = function(name = "testar") {
+save = function(name = "test") {
 	var f = file_text_open_write(name);
 	var str = variable_clone(flexpanel_node_get_struct(ui.root));
 	clearstr(str);
 	file_text_write_string(f, json_stringify(str, true));
 	file_text_close(f);
-    f = file_text_open_write("/tmp/export.ui");
+    f = file_text_open_write(AirUISavePath);
 	file_text_write_string(f, json_stringify(str, true));
 	file_text_close(f);
 };
@@ -62,7 +62,7 @@ load = function() {
 		json_parse(
 			buffer_read(
 				//buffer_load(global.filename),
-                buffer_load("/tmp/export.ui"),
+                buffer_load(AirUISavePath),
 				buffer_text
 			)
 		),

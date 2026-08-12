@@ -123,5 +123,13 @@ function __AirLibLoadTemplates() {
 			"data": {},
 			"left": 275.0,
 		},
+		phone_template: {
+			"width": 1220.0,
+			"name": "main_panel",
+			"height": 2712.0,
+			"top": 50.0,
+			"data": {},
+			"left": 275.0,
+		},
 	};
 }

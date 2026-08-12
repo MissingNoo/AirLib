@@ -9,3 +9,4 @@
 #macro AirLibTags ["bg", "fg", "button", "input", "checkbox"]
 #macro AirLibCheckboxBG c_red
 #macro AirLibCheckboxBGC c_green
+#macro AirUISavePath game_save_id + "export.ui"

@@ -1,2 +1,0 @@
-ui.draw();
-//AirUIDebugDraw

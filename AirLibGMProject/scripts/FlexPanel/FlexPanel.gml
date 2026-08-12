@@ -928,7 +928,10 @@ function airui_draw_sprite_centered(name, spr, pos, fit, scalediv = 1, alpha = 1
 	}
 }
 
-function airui_hotreload(uifile = "/tmp/export.ui", user_event = 0) {
+function airui_hotreload(uifile = AirUISavePath, user_event = 0) {
+	if (!file_exists(uifile)) {
+		return;
+	}
 	if (is_undefined(self[$"md5_frame"])) {
 		md5_frame = 0;
 	}
