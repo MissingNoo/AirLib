@@ -2,7 +2,8 @@ if (instance_number(AirUIController) > 1) {
 	instance_destroy();
 }
 scribble_font_set_default("Fnt");
-AirLib = {frame: 0, listframe: 0, waitframe: 0, lib_uis: {}, lerpers: [], tweens : []};
-if (os_get_config() == "EDITOR" and room != rUIEditor) {
+AirLib = {frame: 0, listframe: 0, waitframe: 0, lib_uis: {}, lerpers: [], tweens : [], started : false};
+if (os_get_config() == "EDITOR" and room != rUIEditor and !AirLib.started) {
+	AirLib.started = true;
 	room_goto(rUIEditor);
 }

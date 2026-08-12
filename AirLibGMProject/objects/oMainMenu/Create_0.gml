@@ -1,3 +1,4 @@
+display_set_gui_size(1366, 768);
 ui = new window(global.game_uis.main_menu);
 ui.fit_to_gui();
 options = ["singleplayer", "create", "join", "settings", "quit"];
@@ -82,3 +83,7 @@ ui.add_draw("menu_options", method(self, function(name, pos, data) {
 	draw_rectangle(_x, _y, _x + _w, maxyy, true);
 }));
 ui.finish();
+if (!AirNet.loggedin and !instance_exists(oLogin)) {
+	instance_create_depth(0, 0, depth, oLogin);
+	instance_deactivate_object(self);
+}

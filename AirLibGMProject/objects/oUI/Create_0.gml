@@ -571,6 +571,7 @@ load_info = function(n) {
 
 	//}
 };
+recreate_inspector();
 flexpanel_node_insert_child(
 	flexpanel_node_get_child(ui.root, "editor"),
 	global.inspector,
@@ -751,5 +752,4 @@ add_to_list = function() {
 };
 
 //add_to_list();
-
 depth = -2001;

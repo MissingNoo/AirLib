@@ -79,7 +79,7 @@ function window(struct, _generate = false) constructor {
 	generate = _generate;
 	lastdepth = 0;
 	ownername = struct[$ "name"];
-	root = flexpanel_create_node(struct);
+	root = flexpanel_create_node(variable_clone(struct));
 	instances = [];
 	editing = false;
 	startingdepth = 0;
@@ -825,37 +825,50 @@ global.inspector = flexpanel_create_node(
 		nodes: [{name: "inspector-label-center", height: 30, data: {text: "Inspector"}}],
 	}
 );
-for (var i = 0; i < array_length(global.options); ++i) {
-	var o = global.options[i];
-	var s = {
-		name: $"{o[0]}",
-		flex: 0.25,
-		flexDirection: "row",
-		nodes: [
-			{name: "label-center", flex: 1, data: {text: $"{o[0]}"}},
-			{
-				name: $"{o[1]}-{o[0]}-ignore",
-				flex: 1,
-				data: {
-					options: array_length(o) > 2 && is_array(o[2]) ? o[2] : [],
-					f: array_length(o) > 2
-					&& is_callable(o[2])
-						? method(self, o[2])
-						: method(self, o[3]),
-				},
-			}
-		],
-	};
-	if (array_length(o) > 2) {
-		//s.data.options = o[2];
-	}
-	var node = flexpanel_create_node(s);
-	flexpanel_node_insert_child(
-		global.inspector,
-		node,
-		flexpanel_node_get_num_children(global.inspector)
+	
+function recreate_inspector() {
+	global.inspector = flexpanel_create_node(
+		{
+			name: "panel_side_ignore",
+			maxWidth: 270,
+			flex: 0.2,
+			data: {image: sButton},
+			nodes: [{name: "inspector-label-center", height: 30, data: {text: "Inspector"}}],
+		}
 	);
+	for (var i = 0; i < array_length(global.options); ++i) {
+		var o = global.options[i];
+		var s = {
+			name: $"{o[0]}",
+			flex: 0.25,
+			flexDirection: "row",
+			nodes: [
+				{name: "label-center", flex: 1, data: {text: $"{o[0]}"}},
+				{
+					name: $"{o[1]}-{o[0]}-ignore",
+					flex: 1,
+					data: {
+						options: array_length(o) > 2 && is_array(o[2]) ? o[2] : [],
+						f: array_length(o) > 2
+						&& is_callable(o[2])
+							? method(self, o[2])
+							: method(self, o[3]),
+					},
+				}
+			],
+		};
+		if (array_length(o) > 2) {
+			//s.data.options = o[2];
+		}
+		var node = flexpanel_create_node(s);
+		flexpanel_node_insert_child(
+			global.inspector,
+			node,
+			flexpanel_node_get_num_children(global.inspector)
+		);
+	}
 }
+
 
 //global.inspector = flexpanel_node_get_struct(global.inspector);
 function cache_container() constructor {

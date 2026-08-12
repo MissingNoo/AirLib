@@ -62,7 +62,7 @@ load = function() {
 		json_parse(
 			buffer_read(
 				//buffer_load(global.filename),
-                buffer_load(AirUISavePath),
+				buffer_load(AirUISavePath),
 				buffer_text
 			)
 		),
@@ -72,3 +72,6 @@ load = function() {
 };
 oUI.add_to_list();
 depth = depth + 1;
+if (file_exists(AirUISavePath)) {
+	oEditableUI.load();
+}
