@@ -6,7 +6,7 @@
   "name":"scribble_refresh_everything",
   "parent":{
     "name":"Miscellaneous",
-    "path":"folders/Libs/Scribble/Miscellaneous.yy",
+    "path":"folders/OtherLibs/Scribble/Miscellaneous.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

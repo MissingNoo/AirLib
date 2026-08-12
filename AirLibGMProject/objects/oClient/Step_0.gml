@@ -12,9 +12,6 @@ if (keyboard_check_pressed(ord("F"))) {
 		instance_destroy(oFriendList);
 	}
 }
-if (keyboard_check_pressed(ord("Z"))) {
-	debug_rooms();
-}
 if (keyboard_check_pressed(vk_f1)) {
 	dbglog = !dbglog;
 	show_debug_log(dbglog);

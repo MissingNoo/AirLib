@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"Debug_Rooms",
   "parent":{
-    "name":"Libs",
-    "path":"folders/Libs.yy",
+    "name":"OtherLibs",
+    "path":"folders/OtherLibs.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

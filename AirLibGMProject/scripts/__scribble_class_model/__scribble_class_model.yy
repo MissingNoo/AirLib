@@ -6,7 +6,7 @@
   "name":"__scribble_class_model",
   "parent":{
     "name":"Classes",
-    "path":"folders/Libs/Scribble/(System - don't call these functions)/Classes.yy",
+    "path":"folders/OtherLibs/Scribble/(System - don't call these functions)/Classes.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

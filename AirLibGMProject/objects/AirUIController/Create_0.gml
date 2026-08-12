@@ -1,5 +1,3 @@
-global.id_atual = 0;
-global.dead_enemies = {};
 if (instance_number(AirUIController) > 1) {
 	instance_destroy();
 }

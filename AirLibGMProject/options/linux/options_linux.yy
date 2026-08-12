@@ -1,6 +1,11 @@
 {
   "$GMLinuxOptions":"",
   "%Name":"Linux",
+  "ConfigValues":{
+    "EDITOR":{
+      "option_linux_disable_sandbox":"false",
+    },
+  },
   "name":"Linux",
   "option_linux_allow_fullscreen":false,
   "option_linux_disable_sandbox":true,

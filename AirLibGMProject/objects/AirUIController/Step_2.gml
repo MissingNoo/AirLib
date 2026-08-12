@@ -1,18 +1,8 @@
-if (keyboard_check_pressed(vk_end)) {
-	show_message_async("reset");
-	global.dead_enemies = {};
-}
-if (keyboard_check_pressed(vk_home)) {
-	//room_goto(rAirLibStart);
-	room_restart();
-	show_message_async("room start");
-}
 AirLib.frame++;
 array_foreach(AirLib.lerpers, function(e, i) {
 	e.tick();
 });
 array_foreach(AirLib.tweens, function(e, i) {
-	//e.tick();
 	with (e.object) {
 		e.percent += 1 / e.time;
 		e.percent = clamp(e.percent, 0, 1);
@@ -28,8 +18,6 @@ array_foreach(AirLib.tweens, function(e, i) {
 			if (e.callback != -1) {
 				e.callback();
 			}
-			
-			//instance_destroy(other);
 		}
 	}
 

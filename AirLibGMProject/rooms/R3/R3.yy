@@ -17,8 +17,8 @@
   ],
   "name":"R3",
   "parent":{
-    "name":"AirLibGMProject",
-    "path":"AirLibGMProject.yyp",
+    "name":"TestRooms",
+    "path":"folders/AirNetworking/ColisionManager/TestRooms.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

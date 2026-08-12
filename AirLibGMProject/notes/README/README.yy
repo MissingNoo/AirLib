@@ -1,0 +1,11 @@
+{
+  "$GMNotes":"v1",
+  "%Name":"README",
+  "name":"README",
+  "parent":{
+    "name":"AirLibGMProject",
+    "path":"AirLibGMProject.yyp",
+  },
+  "resourceType":"GMNotes",
+  "resourceVersion":"2.0",
+}

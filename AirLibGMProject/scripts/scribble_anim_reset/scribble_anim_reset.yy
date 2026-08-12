@@ -6,7 +6,7 @@
   "name":"scribble_anim_reset",
   "parent":{
     "name":"Animation",
-    "path":"folders/Libs/Scribble/Animation.yy",
+    "path":"folders/OtherLibs/Scribble/Animation.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

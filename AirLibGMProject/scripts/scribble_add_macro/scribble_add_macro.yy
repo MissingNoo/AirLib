@@ -6,7 +6,7 @@
   "name":"scribble_add_macro",
   "parent":{
     "name":"Miscellaneous",
-    "path":"folders/Libs/Scribble/Miscellaneous.yy",
+    "path":"folders/OtherLibs/Scribble/Miscellaneous.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",
